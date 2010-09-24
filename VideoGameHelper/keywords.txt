@@ -1,0 +1,5 @@
+title_screen_init_nunchucks
+question_box
+nunchuck_calibration
+high_score_get_name
+high_score_show_list

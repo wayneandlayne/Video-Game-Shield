@@ -1,0 +1,11 @@
+Nunchuck	KEYWORD1
+begin	KEYWORD2
+update	KEYWORD2
+joy_x	KEYWORD2
+joy_y	KEYWORD2
+acc_x	KEYWORD2
+acc_y	KEYWORD2
+acc_z	KEYWORD2
+button_c	KEYWORD2
+button_z	KEYWORD2
+

@@ -1,0 +1,6 @@
+This is an arduino library for using the Nunchuck.
+
+It uses Peter Fleury's excellent i2c library instead of Wire.h.  
+
+Adam Wolf
+Wayne and Layne, LLC
