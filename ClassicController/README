@@ -1,4 +1,4 @@
-This is an arduino library for using the Wii Nunchuck.
+This is an arduino library for using the Wii Classic Controller.
 
 It uses Peter Fleury's excellent i2c library instead of Wire.h,
 slightly modified to include a timeout feature on initialization.  

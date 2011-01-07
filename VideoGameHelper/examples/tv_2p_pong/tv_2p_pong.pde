@@ -1,8 +1,9 @@
+
 /*
   Two Player Pong
   by Wayne and Layne, LLC
   http://wayneandlayne.com
-  v1.0, 21/09/2010
+  v1.1, 21/12/2010
 
   Demonstrates using both nunchucks with the Video Game Shield,
   in a fun and simple pong-like game.
@@ -25,10 +26,12 @@
 
 */
 
+#include <i2cmaster.h>
 #include <nunchuck.h>
 #include <TVout.h>
+#include <font4x6.h>
 #include <VideoGameHelper.h>
-#include <avr/pgmspace.h> // for PSTR()
+#include <avr/pgmspace.h>
 
 TVout TV;
 Nunchuck player1;
@@ -59,6 +62,7 @@ byte missed = 0; // who missed?
 void setup()
 {
   TV.begin(_NTSC);
+  TV.select_font(font4x6);
   TV.delay_frame(60);
   state = STATE_START;
 }
@@ -72,12 +76,12 @@ void draw_scores()
 void draw_paddles()
 {
   // clear old paddles
-  TV.draw_box(0, 0, 1, vres, 0, 0, 0, 1);
-  TV.draw_box(hres-1, 0, 1, vres, 0, 0, 0, 1);
+  TV.draw_rect(0, 0, 1, vres, 0, 0);
+  TV.draw_rect(hres-1, 0, 1, vres, 0, 0);
   
   // draw new paddles
-  TV.draw_box(0, leftpaddle_y, 1, PADDLE_HEIGHT, 1, 0, 0, 1);
-  TV.draw_box(hres-1, rightpaddle_y, 1, PADDLE_HEIGHT, 1, 0, 0, 1);
+  TV.draw_rect(0, leftpaddle_y, 1, PADDLE_HEIGHT, 1, 1);
+  TV.draw_rect(hres-1, rightpaddle_y, 1, PADDLE_HEIGHT, 1, 1);
 }
 
 void init_display()
@@ -90,10 +94,10 @@ void init_display()
   draw_paddles();
 }
 
-void draw_ball(boolean remove)
+void draw_ball()
 {
-  //TV.draw_box(ball_x, ball_y, 1, 2, (remove) ? 0 : 1, (remove) ? 0 : 1, 0, 1);
-  TV.draw_box(ball_x, ball_y, 1, 2, 2, 2, 0, 1);
+  //TV.draw_rect(ball_x, ball_y, 1, 2, 2);
+  TV.set_pixel(ball_x, ball_y, 2);
 }
 
 void reset_ball_and_paddles()
@@ -139,7 +143,7 @@ void loop()
       score[1] = 0;
       reset_ball_and_paddles();
       init_display();
-      draw_ball(false); // pre-draw the ball so we can erase it
+      draw_ball(); // pre-draw the ball so we can erase it
       
       state = STATE_PLAY;
       break;
@@ -208,11 +212,11 @@ void loop()
       }
       
       // update ball position
-      draw_ball(true);
+      draw_ball();
       ball_x += ball_dx;
       ball_y += ball_dy;
       draw_paddles();
-      draw_ball(false);
+      draw_ball();
       
       TV.delay_frame(1);
       break;
@@ -225,19 +229,19 @@ void loop()
         // winner winner, chicken dinner
         
         // TODO make this look nicer
-        TV.print_str_P((missed) ? (8) : (hres / 2 + 8), 15, PSTR("Winner!"));
+        TV.printPGM((missed) ? (8) : (hres / 2 + 8), 15, PSTR("Winner!"));
         TV.delay_frame(120);
         state = STATE_START;
       }
       else
       {
         TV.tone(500, 30);
-        TV.print_str_P((missed) ? (hres / 2 + 8) : (8), ball_y - 4, PSTR("Missed!"));
+        TV.printPGM((missed) ? (hres / 2 + 8) : (8), ball_y - 4, PSTR("Missed!"));
         TV.delay_frame(40);
         reset_ball_and_paddles();
         TV.clear_screen();
         init_display();
-        draw_ball(false); // pre-draw the ball so we can erase it
+        draw_ball(); // pre-draw the ball so we can erase it
         state = STATE_PLAY;
       }
       break;

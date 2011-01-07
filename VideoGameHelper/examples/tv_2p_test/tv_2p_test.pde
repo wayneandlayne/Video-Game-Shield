@@ -3,7 +3,7 @@
  Demonstrates using both nunchucks with the Video Game Shield,
  by reading and displaying the controllers' values to the TV.
  
- Copyright (c) 2010 Wayne and Layne, LLC - Last updated 2010/09/21
+ Copyright (c) 2010 Wayne and Layne, LLC - Last updated 2010/12/21
  
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@
  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include <i2cmaster.h>
 #include <nunchuck.h>
 #include <TVout.h>
+#include <fontALL.h>
 #include <VideoGameHelper.h>
 #include <pollserial.h>
 pollserial pserial;
@@ -35,14 +37,12 @@ Nunchuck player2;
 
 void setup()
 {
-  pinMode(13, OUTPUT);
   pserial.begin(57600);
   pserial.println("Video Game Shield Test");  
   TV.begin(_NTSC, SCREENWIDTH, SCREENHEIGHT);
+  TV.select_font(font6x8);
   pserial.println("TV began");
   TV.delay_frame(60);
-
-
 
   title_screen_init_nunchucks(&TV, "TV two player test", &player1, &player2, true);
   pserial.println("Nunchucks initialized and providing data");
@@ -72,34 +72,35 @@ void disp_nunchuck(byte id, byte* data)
   byte offset = (id == 1) ? 1 : 60;
   char buf[4];
 
-  TV.draw_box(0 + offset, 0, 20, SCREENHEIGHT, 0, 0, 0, 1);
+  TV.draw_rect(0 + offset, 0, 20, SCREENHEIGHT, 0, 0);
 
   itoa(data[0], buf, 10);
-  TV.print_str(offset, 0, buf);
+  TV.print(offset, 0, buf);
   pserial.print(buf);
   pserial.print(" ");
   itoa(data[1], buf, 10);
-  TV.print_str(offset, 10, buf);
+  TV.print(offset, 10, buf);
   pserial.print(buf);
   pserial.print(" ");
   itoa(data[2], buf, 10);
-  TV.print_str(offset, 20, buf);
+  TV.print(offset, 20, buf);
   pserial.print(buf);
   pserial.print(" ");
   itoa(data[3], buf, 10);
-  TV.print_str(offset, 30, buf);
+  TV.print(offset, 30, buf);
   pserial.print(buf);
   pserial.print(" ");
   itoa(data[4], buf, 10);
-  TV.print_str(offset, 40, buf);
+  TV.print(offset, 40, buf);
   pserial.print(buf);
   pserial.print(" ");
   itoa(data[5], buf, 10);
-  TV.print_str(offset, 50, buf);
+  TV.print(offset, 50, buf);
   pserial.println(buf);
 
   // draw a box and plot a point for the joystick to move around
-  TV.draw_box(20 + offset, 0, 30, 30, 1, 0, 0, 1);
+  //TV.draw_box(20 + offset, 0, 30, 30, 1, 0, 0, 1);
+  TV.draw_rect(20 + offset, 0, 30, 30, 1);
   TV.set_pixel(map(data[0], 20, 240, 0, 30) + 20 + offset, map(data[1], 20, 230, 30, 0), 1); // note that the y is being inverted
 }
 

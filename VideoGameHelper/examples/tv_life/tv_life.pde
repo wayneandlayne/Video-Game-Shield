@@ -1,7 +1,7 @@
 /* John Conway's Game of Life
 by Wayne and Layne, LLC
 http://wayneandlayne.com
-v1.0, 19/09/2010
+v1.1, 19/12/2010
 
 This is intended for the Video Game Shield, and uses the TVOut library and the software I2C Nunchuck library.
 
@@ -37,6 +37,8 @@ Features:
 #include <nunchuck.h>
 #include <VideoGameHelper.h>
 #include "Patterns.h"
+#include <fontALL.h>
+#include <i2cmaster.h>
 
 //The resolution of the life playing field is XCOLS by YCOLS.
 #define XCOLS 104
@@ -54,14 +56,14 @@ void setup()
 {
   TV.begin(_NTSC,104,64);
   TV.clear_screen();
-  TV.print_str_P(0,  0, PSTR("Conway's")); //PSTR is a macro that puts a string in PROGMEM.  It's a really useful shortcut if you're only going to use that string once in a sketch.
-  TV.print_str_P(0, 10, PSTR("Game of Life")); 
-  TV.print_str_P(0, 32, PSTR("by"));
-  TV.print_str_P(0, 41, PSTR("Wayne and Layne"));
+  TV.select_font(font6x8);
+  TV.printPGM(0,  0, PSTR("Conway's")); //PSTR is a macro that puts a string in PROGMEM.  It's a really useful shortcut if you're only going to use that string once in a sketch.
+  TV.printPGM(0, 10, PSTR("Game of Life")); 
+  TV.printPGM(0, 32, PSTR("by"));
+  TV.printPGM(0, 41, PSTR("Wayne and Layne"));
   int random_seed = analogRead(0);
   randomSeed(random_seed);
   setup_nunchuck(&nunchuck);
-  
   delay_frame_or_break_for_z(&nunchuck, 60*15);
   TV.clear_screen();
 }
@@ -120,6 +122,7 @@ void loop()
 
       if (nunchuck.button_c())
       {
+        TV.select_font(font4x6);
         //they pushed down menu
         char return_to_life = 0;
         while (!return_to_life)
@@ -197,16 +200,18 @@ char loadPatternsMenu()
   TV.clear_screen();
 
   //TV.select_font(_3x5);
-  TV.select_font(4);
+  TV.select_font(font4x6);
 
-  TV.print_str_P(0, 0, PSTR("Load Patterns"));
+  TV.printPGM(0, 0, PSTR("Load Patterns"));
   TV.draw_line(0, 7, TV.hres() - 1, 7, 1);
-  TV.print_str_P(8, 9, PSTR("Back"));
+  TV.printPGM(8, 9, PSTR("Back"));
   for (byte i = 0; i < NUM_OF_PATTERNS; i++)
-    TV.print_str_P(8, 16 + i * 7, patterns[i]->name);
+    TV.printPGM(8, 16 + i * 7, patterns[i]->name);
 
   byte choice = 0;
-  TV.draw_box(1, 7*choice+9, 5, 5, 1, 1, 0, 0); // draw selection box
+  //TV.draw_box(1, 7*choice+9, 5, 5, 1, 1, 0, 0); // draw selection box
+  TV.draw_rect(1, 7*choice+9, 5, 5, 1, 1); // draw selection box
+  
   while (1)
   {
     TV.delay_frame(10);
@@ -214,18 +219,25 @@ char loadPatternsMenu()
     nunchuck.update();
     if (nunchuck.joy_up())
     {
-      TV.draw_box(1, 7*choice+9, 5, 5, 0, 0, 0, 0); // remove selection box
+      //TV.draw_box(1, 7*choice+9, 5, 5, 0, 0, 0, 0); // remove selection box
+      TV.draw_rect(1, 7*choice+9, 5, 5, 0, 0); // remove selection box
+      
       if (choice == 0)
         choice = NUM_OF_PATTERNS ; //not num of patterns -1 cuz we added BACK
       else
         choice--;
-      TV.draw_box(1, 7*choice+9, 5, 5, 1, 1, 0, 0); // draw selection box
+      //TV.draw_box(1, 7*choice+9, 5, 5, 1, 1, 0, 0); // draw selection box
+        TV.draw_rect(1, 7*choice+9, 5, 5, 1, 1); // draw selection box
     }
     if (nunchuck.joy_down())
     {
-      TV.draw_box(1, 7*choice+9, 5, 5, 0, 0, 0, 0); // remove selection box
+      //TV.draw_box(1, 7*choice+9, 5, 5, 0, 0, 0, 0); // remove selection box
+      TV.draw_rect(1, 7*choice+9, 5, 5, 0, 0); // remove selection box
+
       choice = (choice + 1) % (NUM_OF_PATTERNS+1);
-      TV.draw_box(1, 7*choice+9, 5, 5, 1, 1, 0, 0); // draw selection box
+      //TV.draw_box(1, 7*choice+9, 5, 5, 1, 1, 0, 0); // draw selection box
+      TV.draw_rect(1, 7*choice+9, 5, 5, 1, 1); // draw selection box
+
     }
     if (nunchuck.button_c() || nunchuck.button_z()) // TODO what to do here for buttons
     {
@@ -234,7 +246,7 @@ char loadPatternsMenu()
   }
   
   //TV.select_font(_5x7);
-  TV.select_font(6);
+  TV.select_font(font6x8);
   if (choice > 0) //i.e. not back
   {
     load_pattern_into_buffer(patterns[choice-1]);

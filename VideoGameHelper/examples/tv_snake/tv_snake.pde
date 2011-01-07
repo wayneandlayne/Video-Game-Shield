@@ -10,7 +10,7 @@
 Wayne and Layne, LLC
 http://wayneandlayne.com
 
-20/09/2010
+18/12/2010
 
 
    This program is free software; you can redistribute it and/or modify
@@ -34,8 +34,9 @@ http://wayneandlayne.com
 #include <video_gen.h>
 #include <VideoGameHelper.h>
 #include "snake.h"
-
+#include <fontALL.h>
 #include <avr/pgmspace.h>
+#include <i2cmaster.h>
 
 TVout TV;
 Nunchuck player1;
@@ -60,6 +61,8 @@ void setup()
 {
   TV.begin(_NTSC);
  
+  TV.print(0,0,"whatup");
+ 
   title_screen_init_nunchucks(&TV, "Snakes on surfaces", &player1, &player2, true);
 
   rules_screen();
@@ -69,14 +72,14 @@ void rules_screen()
 {
   TV.clear_screen();
   
-  TV.print_str_P(0, 0, PSTR("Available Maps:"));
+  TV.printPGM(0, 0, PSTR("Available Maps:"));
   TV.draw_line(0, 10, TV.hres()-1, 10, 1);
   
   TV.draw_line(0, 15, 16, 15, 1); // top
   TV.draw_line(0, 25, 16, 25, 1); // bottom
   TV.draw_line(0, 15, 0, 25, 1); // left
   TV.draw_line(16, 15, 16, 25, 1); // right
-  TV.print_str_P(26, 18, PSTR("Plane"));
+  TV.printPGM(26, 18, PSTR("Plane"));
   
   TV.draw_line(0, 35, 16, 35, 1); // top
   TV.draw_line(0, 45, 16, 45, 1); // bottom
@@ -86,7 +89,7 @@ void rules_screen()
   TV.draw_line(16, 40, 11, 40, 1); // right arrow mid
   TV.draw_line(16, 40, 14, 38, 1); // right arrow upper diag
   TV.draw_line(16, 40, 14, 42, 1); // right arrow lower diag
-  TV.print_str_P(26, 38, PSTR("Sphere"));
+  TV.printPGM(26, 38, PSTR("Sphere"));
   
   TV.draw_line(8, 54, 8, 58, 1); // up arrow mid
   TV.draw_line(8, 54, 10, 56, 1); // up arrow right diag
@@ -100,10 +103,10 @@ void rules_screen()
   TV.draw_line(16, 60, 11, 60, 1); // right arrow mid
   TV.draw_line(16, 60, 14, 58, 1); // right arrow upper diag
   TV.draw_line(16, 60, 14, 62, 1); // right arrow lower diag
-  TV.print_str_P(26, 58, PSTR("Torus"));
+  TV.printPGM(26, 58, PSTR("Torus"));
   
   TV.draw_line(0, 75, TV.hres()-1, 75, 1);
-  TV.print_str_P(0, 80, PSTR("P1 press C"));
+  TV.printPGM(0, 80, PSTR("P1 press C"));
   
   TV.delay_frame(30);
   while(1)
@@ -126,9 +129,9 @@ void ready_screen()
   p2x = (TV.hres()/3)*2;
   p2y = TV.vres()/2+5;
   
-  TV.print_str_P(0, 0, PSTR("Press C when ready"));
-  TV.print_str_P(24, 32, PSTR("P1 ready?"));
-  TV.print_str_P(72, 32, PSTR("P2 ready?"));
+  TV.printPGM(0, 0, PSTR("Press C when ready"));
+  TV.printPGM(24, 32, PSTR("P1 ready?"));
+  TV.printPGM(72, 32, PSTR("P2 ready?"));
   boolean p1_ready = false;
   boolean p2_ready = false;
   while (! (p1_ready && p2_ready) )
@@ -138,21 +141,22 @@ void ready_screen()
     if (player1.button_c())
     {
       p1_ready = true;
-      TV.print_str(40, 40  , "ok");
+      TV.print(40, 40  , "ok");
     }
     player2.update();
     if (player2.button_c())
     {
       p2_ready = true;
-      TV.print_str(80, 40, "ok");
+      //TV.print(80, 40, "ok");
+      TV.print(80, 40, "ok");
     }
   }
   
-  TV.print_str(TV.hres()/2-8, 50, "3...");
+  TV.print(TV.hres()/2-8, 50, "3...");
   TV.delay_frame(60);
-  TV.print_str(TV.hres()/2-8, 60, "2...");
+  TV.print(TV.hres()/2-8, 60, "2...");
   TV.delay_frame(60);
-  TV.print_str(TV.hres()/2-8, 70, "1...");
+  TV.print(TV.hres()/2-8, 70, "1...");
   TV.delay_frame(30);
 }
 
@@ -204,12 +208,14 @@ void loop()
   scores[0] = 0;
   scores[1] = 0;
   char* options[] = {"Plane", "Sphere", "Torus"};
-  TV.select_font(_5X7);
-  game_mode = question_box(&TV, &player1, "Which surface?", options, 3, 0);
-  char* speed_options[] = {"Fastest", "Fast", "Medium", "Slow", "Slower", "Snail's pace"};
-  int throttle = question_box(&TV, &player1, "Which speed?", speed_options, 6, 2);
+  //TV.select_font(font4x6);
+  //game_mode = question_box(&TV, &player1, "Which surface?", options, 3, 0);
+  //char* speed_options[] = {"Fastest", "Fast", "Medium", "Slow", "Slower", "Snail's pace"};
+  //int throttle = question_box(&TV, &player1, "Which speed?", speed_options, 6, 2);
+  game_mode = 0;
+  int throttle=2;
     
-  TV.select_font(_3X5);
+  TV.select_font(font4x6);
 
   while (scores[0] < 10 && scores[1] < 10)  
   {
@@ -245,9 +251,9 @@ void loop()
   // winner winner chicken dinner
   TV.clear_screen();
   if (scores[0] == 10)
-    TV.print_str_P(0, 10, PSTR("Player 1 wins!"));
+    TV.printPGM(0, 10, PSTR("Player 1 wins!"));
   else
-    TV.print_str_P(0, 10, PSTR("Player 2 wins!"));
+    TV.printPGM(0, 10, PSTR("Player 2 wins!"));
   TV.delay_frame(120);
 }
 
@@ -281,7 +287,7 @@ void print_whole_number(byte x, byte y, int number)
 {
   char output[10];
   itoa(number, output, 10);
-  TV.print_str(x, y, output);
+  TV.print(x, y, output);
 }
 
 void initialize_game()
@@ -313,15 +319,15 @@ void draw_score_bar()
   
   if (game_mode == SNAKES_ON_A_PLANE)
   {
-    TV.print_str_P(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, PSTR("Snakes on a Plane")); //TODO: make this actually centered
+    TV.printPGM(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, PSTR("Snakes on a Plane")); //TODO: make this actually centered
   } 
   else if (game_mode == SNAKES_ON_A_SPHERE)
   {
-    TV.print_str(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, "Snakes on a Sphere"); //TODO: make this actually centered
+    TV.print(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, "Snakes on a Sphere"); //TODO: make this actually centered
   }  
   else if (game_mode == SNAKES_ON_A_TORUS)
   {
-    TV.print_str(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, "Snakes on a Torus"); //TODO: make this actually centered    
+    TV.print(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, "Snakes on a Torus"); //TODO: make this actually centered    
   }
 }
 

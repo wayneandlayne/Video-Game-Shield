@@ -5,7 +5,7 @@
 
    Wayne and Layne, LLC
    http://wayneandlayne.com
-   20/09/2010
+   19/12/2010
 
    Copyright (c) 2010, Wayne and Layne, LLC
 
@@ -26,6 +26,7 @@
 */
 #include <TVout.h>
 #include <video_gen.h>
+#include <fontALL.h>
 
 TVout TV;
 
@@ -46,6 +47,7 @@ byte state = STATE_TEST;
 void setup()
 {
   TV.begin(_NTSC);
+  TV.select_font(font6x8);
   TV.delay_frame(120);
   state = STATE_START;
 
@@ -58,21 +60,21 @@ void draw_plot()
 
     TV.clear_screen();
 
-    TV.print_str(0, 0, "Cur:");
+    TV.print(0, 0, "Cur:");
     itoa(samples[current_sample_ix], buf, 10);
-    TV.print_str(30, 0, buf);
+    TV.print(30, 0, buf);
 
-    TV.print_str(60, 0, "Avg:");
+    TV.print(60, 0, "Avg:");
     itoa(data_mean, buf, 10);
-    TV.print_str(90, 0, buf);
+    TV.print(90, 0, buf);
 
-    TV.print_str(0, 8, "Min:");
+    TV.print(0, 8, "Min:");
     itoa(data_min, buf, 10);
-    TV.print_str(30, 8, buf);
+    TV.print(30, 8, buf);
 
-    TV.print_str(60, 8, "Max:");
+    TV.print(60, 8, "Max:");
     itoa(data_max, buf, 10);
-    TV.print_str(90, 8, buf);
+    TV.print(90, 8, buf);
 
     TV.draw_line(0, 20, TV.hres(), 20, 1);
 
@@ -129,8 +131,8 @@ void loop()
 {
     // TODO add nice title screen here
     TV.clear_screen();
-    TV.print_str(0, 0, "TV Data Collection");
-    TV.print_str(0, 10, "Wayne and Layne");
+    TV.print(0, 0, "TV Data Collection");
+    TV.print(0, 10, "Wayne and Layne");
     TV.delay_frame(120);
     
     TV.clear_screen();

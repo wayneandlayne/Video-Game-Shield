@@ -17,13 +17,14 @@
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+http://www.arduino.cc/playground/Main/WiiClassicController
+
  */
 
 #include "WProgram.h" // needed for the arduino functions map() and constrain()
 #include "nunchuck.h"
 
 #include <i2cmaster.h>
-#include <twimaster.c>
 
 // returns 0=success, 1=could not access device
 // Provide a 0 or 1 to which_nunchuck to specify which player this is
@@ -55,15 +56,15 @@ unsigned char Nunchuck::begin(unsigned char which_nunchuck)
     else
         NUNCHUCK_SELECT_P1;
 
-    i2c_init(); // this is non-blocking, it just sets up the baud rate generator and internal pullups
-    if (i2c_start_wait(NUNCHUCK_I2C_ADDR + I2C_WRITE, 10) == 1)
+    i2cmaster::i2c_init(); // this is non-blocking, it just sets up the baud rate generator and internal pullups
+    if (i2cmaster::i2c_start_wait(NUNCHUCK_I2C_ADDR + I2C_WRITE, 10) == 1)
     {
         // could not access device
         return 1;
     }
-    i2c_write(0x40);
-    i2c_write(0x00);
-    i2c_stop();
+    i2cmaster::i2c_write(0x40);
+    i2cmaster::i2c_write(0x00);
+    i2cmaster::i2c_stop();
 
     return 0;
 }
@@ -75,19 +76,19 @@ void Nunchuck::update()
     else
         NUNCHUCK_SELECT_P1;
 
-    i2c_start_wait(NUNCHUCK_I2C_ADDR + I2C_WRITE, 0xFFFF);
-    i2c_write(0x00);
-    i2c_stop();
+    i2cmaster::i2c_start_wait(NUNCHUCK_I2C_ADDR + I2C_WRITE, 0xFFFF);
+    i2cmaster::i2c_write(0x00);
+    i2cmaster::i2c_stop();
 
     delayMicroseconds(1000); // TODO is this needed?
 
-    i2c_start_wait(NUNCHUCK_I2C_ADDR + I2C_READ, 0xFFFF);
+    i2cmaster::i2c_start_wait(NUNCHUCK_I2C_ADDR + I2C_READ, 0xFFFF);
     for (unsigned char i = 0; i < 5; i++)
     {
-        nunchuck_buf[i] = decode_byte(i2c_readAck());
+        nunchuck_buf[i] = decode_byte(i2cmaster::i2c_readAck());
     }
-    nunchuck_buf[5] = decode_byte(i2c_readNak());
-    i2c_stop();
+    nunchuck_buf[5] = decode_byte(i2cmaster::i2c_readNak());
+    i2cmaster::i2c_stop();
 }
 
 bool Nunchuck::button_z()

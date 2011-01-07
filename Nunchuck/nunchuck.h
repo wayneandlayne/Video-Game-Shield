@@ -21,7 +21,7 @@
 #ifndef Nunchuck_h
 #define Nunchuck_h
 
-#include "WProgram.h" // TODO is this needed?
+#include "WProgram.h"
 
 #define NUNCHUCK_I2C_ADDR               0xA4
 
@@ -37,15 +37,15 @@
 #define NUNCHUCK_JOY_Y_MIN              28
 #define NUNCHUCK_JOY_Y_MAX              226
 
-#define NUNCHUCK_JOY_X_SCALED_MIN      0
-#define NUNCHUCK_JOY_X_SCALED_MAX      100
-#define NUNCHUCK_JOY_Y_SCALED_MIN      0
-#define NUNCHUCK_JOY_Y_SCALED_MAX      100
+#define NUNCHUCK_JOY_X_SCALED_MIN       0
+#define NUNCHUCK_JOY_X_SCALED_MAX       100
+#define NUNCHUCK_JOY_Y_SCALED_MIN       0
+#define NUNCHUCK_JOY_Y_SCALED_MAX       100
 
-#define NUNCHUCK_SELECT_P1 PORTB &= 0xEF // set PB4 = low
-#define NUNCHUCK_SELECT_P2 PORTB |= 0x10 // set PB4 = high
-#define NUNCHUCK_PLAYER_1 0
-#define NUNCHUCK_PLAYER_2 1
+#define NUNCHUCK_SELECT_P1              PORTB &= 0xEF // set PB4 = low
+#define NUNCHUCK_SELECT_P2              PORTB |= 0x10 // set PB4 = high
+#define NUNCHUCK_PLAYER_1               0
+#define NUNCHUCK_PLAYER_2               1
 
 class Nunchuck
 {
