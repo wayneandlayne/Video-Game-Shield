@@ -1,6 +1,6 @@
 
 /*
-  Two Player Pong, with potentiometers instead of Wii Nunchucks
+  Two Player Pong with potentiometers instead of Wii Nunchucks
   by Wayne and Layne, LLC
   http://wayneandlayne.com
   v1.1, 1/16/2011
@@ -8,6 +8,8 @@
   Demonstrates using potentiometers with the Video Game Shield,
   in a fun and simple pong-like game. We also have a version that
   uses the Wii Nunchucks as controllers.
+
+  It uses the TVout Library from Myles Metzler.
 
    Copyright (c) 2011, Wayne and Layne, LLC
    
