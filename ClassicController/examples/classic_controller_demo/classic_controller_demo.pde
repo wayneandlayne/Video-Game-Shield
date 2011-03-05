@@ -2,7 +2,7 @@
    Arduino sketch to demonstrate interfacing with a Nintendo Wii Classic Controller.
    Created by Adam Wolf and Matthew Beckler
    Wayne and Layne, LLC - http://wayneandlayne.com/projects/video-game-shield/
-   Last updated: October 31, 2010
+   Last updated: January 16, 2011
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -18,10 +18,11 @@
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
    
-   Some useful information provided by http://www.arduino.cc/playground/Main/WiiClassicController
-
+   Some useful information provided by:
+   http://www.arduino.cc/playground/Main/WiiClassicController
 */
 
+#include <i2cmaster.h>
 #include <ClassicController.h>
 
 ClassicController cc;
