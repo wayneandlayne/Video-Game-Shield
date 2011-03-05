@@ -59,9 +59,8 @@ int scores[2] = {0, 0};
 
 void setup()
 {
-  TV.begin(_NTSC);
- 
-  TV.print(0,0,"whatup");
+  TV.begin(_NTSC, 128, 96);
+  TV.select_font(font4x6);
  
   title_screen_init_nunchucks(&TV, "Snakes on surfaces", &player1, &player2, true);
 
@@ -208,14 +207,12 @@ void loop()
   scores[0] = 0;
   scores[1] = 0;
   char* options[] = {"Plane", "Sphere", "Torus"};
-  //TV.select_font(font4x6);
-  //game_mode = question_box(&TV, &player1, "Which surface?", options, 3, 0);
+  game_mode = question_box(&TV, &player1, "Which surface?", options, 3, 0);
+  TV.delay_frame(30);
   //char* speed_options[] = {"Fastest", "Fast", "Medium", "Slow", "Slower", "Snail's pace"};
   //int throttle = question_box(&TV, &player1, "Which speed?", speed_options, 6, 2);
   game_mode = 0;
-  int throttle=2;
-    
-  TV.select_font(font4x6);
+  int throttle = 2;
 
   while (scores[0] < 10 && scores[1] < 10)  
   {
