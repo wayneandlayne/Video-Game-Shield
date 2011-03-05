@@ -6,7 +6,9 @@
   v1.1, 21/12/2010
 
   Demonstrates using both nunchucks with the Video Game Shield,
-  in a fun and simple pong-like game.
+  in a fun and simple pong-like game. We also have a version that
+  uses potentiometers as the controllers, if you don't have any
+  Wii nunchucks to use.
 
    Copyright (c) 2010, Wayne and Layne, LLC
    

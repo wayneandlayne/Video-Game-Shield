@@ -1,6 +1,6 @@
 
 /*
-  Two Player Pong with potentiometers instead of Wii Nunchucks
+  Two Player Pong, with potentiometers instead of Wii Nunchucks
   by Wayne and Layne, LLC
   http://wayneandlayne.com
   v1.1, 1/16/2011
@@ -9,7 +9,11 @@
   in a fun and simple pong-like game. We also have a version that
   uses the Wii Nunchucks as controllers.
 
-  It uses the TVout Library from Myles Metzler.
+  Connect the wiper of a potentiometer to analog 0 for player 1, and
+  analog 1 for player 2, to be the controllers. Connect the other two
+  pins of the potentiometer to 5v and 0v. For more details on this
+  circuit, please check out our blog post:
+        http://www.wayneandlayne.com/?p=296
 
    Copyright (c) 2011, Wayne and Layne, LLC
    
