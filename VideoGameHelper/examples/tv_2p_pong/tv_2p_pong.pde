@@ -2,30 +2,31 @@
 /*
   Two Player Pong
   by Wayne and Layne, LLC
-  http://wayneandlayne.com
-  v1.1, 21/12/2010
+  http://www.wayneandlayne.com/projects/video-game-shield/
+  v1.2, 2011-05-02
 
   Demonstrates using both nunchucks with the Video Game Shield,
   in a fun and simple pong-like game. We also have a version that
   uses potentiometers as the controllers, if you don't have any
   Wii nunchucks to use.
 
-   Copyright (c) 2010, Wayne and Layne, LLC
-   
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
-   
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   
-   You should have received a copy of the GNU General Public License along
-   with this program; if not, write to the Free Software Foundation, Inc.,
-   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+  Includes new pause functionality added by forum member Pascal König.
 
+  Copyright (c) 2011, Wayne and Layne, LLC
+  
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License along
+  with this program; if not, write to the Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include <i2cmaster.h>
@@ -50,6 +51,9 @@ char ball_dy = 1;
 
 byte score[] = {0, 0};
 
+byte pause = 0; // 0 = not paused, 1 = player 1 paused, 2 = player 2 paused
+byte pause_timer = 0; // used to debounce switching between pause and un-pause
+
 byte leftpaddle_y, rightpaddle_y;
 
 #define BEEP TV.tone(2000, 30)
@@ -58,6 +62,8 @@ byte leftpaddle_y, rightpaddle_y;
 #define STATE_START   1
 #define STATE_PLAY    2
 #define STATE_MISS    3
+#define STATE_PAUSE   4
+
 byte state = STATE_TEST;
 byte missed = 0; // who missed?
 
@@ -151,6 +157,8 @@ void loop()
       break;
       
     case STATE_PLAY:
+      pause_timer++;
+
       // top and bottom walls
       if (ball_y == vres || ball_y == 0)
       {
@@ -191,6 +199,12 @@ void loop()
       
       // update paddle positions
       player1.update();
+      if (player1.button_z() && pause_timer > 20)
+      {
+        pause_timer = 0;
+        state = STATE_PAUSE;
+        pause = 1;
+      }
       if (player1.joy_up())
       {
         leftpaddle_y -= PADDLE_MOVEMENT;
@@ -202,6 +216,12 @@ void loop()
         if (leftpaddle_y > (vres - PADDLE_HEIGHT - 1)) leftpaddle_y = vres - PADDLE_HEIGHT;
       }
       player2.update();
+      if (player2.button_z() && pause_timer > 20)
+      {
+        pause_timer = 0;
+        state = STATE_PAUSE;
+        pause = 2;
+      }
       if (player2.joy_up())
       {
         rightpaddle_y -= PADDLE_MOVEMENT;
@@ -245,6 +265,24 @@ void loop()
         init_display();
         draw_ball(); // pre-draw the ball so we can erase it
         state = STATE_PLAY;
+      }
+      break;
+
+    case STATE_PAUSE:
+      pause_timer++;
+      TV.printPGM(hres/2 - 10, vres/2, PSTR("Pause!"));
+      player1.update();
+      player2.update();
+      if ( (pause_timer > 20) &&
+           ( (pause == 1 && player1.button_z()) ||
+             (pause == 2 && player2.button_z()) ) )
+      {
+        state = STATE_PLAY;
+        pause = 0;
+        pause_timer = 0;
+        TV.clear_screen();
+        init_display();
+        draw_ball(); // pre-draw the ball so we can erase it
       }
       break;
       
