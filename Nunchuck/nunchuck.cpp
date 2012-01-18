@@ -1,7 +1,7 @@
 /*
    Nunchuck.cpp - Library for Nintendo Wii Nunchuck
    Created by Adam Wolf and Matthew Beckler (Wayne and Layne, LLC)
-   Last updated: August 16, 2010
+   Last updated: January 18, 2012 - Arduino 1.0 compatability fix
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -21,7 +21,12 @@ http://www.arduino.cc/playground/Main/WiiClassicController
 
  */
 
-#include "WProgram.h" // needed for the arduino functions map() and constrain()
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
 #include "nunchuck.h"
 
 #include <i2cmaster.h>

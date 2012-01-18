@@ -19,6 +19,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
   
   Modified July 2010 by Myles D. Metzler
+  Updated January 18, 2012 - Arduino 1.0 compatability fix (write() now returns size_t)
 */
 
 #ifndef PSERIAL_H
@@ -43,7 +44,7 @@ class pollserial : public Print {
 		uint8_t available(void);
 		int read(void);
 		void flush(void);
-		virtual void write(uint8_t);
+		virtual size_t write(uint8_t);
 		using Print::write; // pull in write(str) and write(buf, size) from Print
 };
 

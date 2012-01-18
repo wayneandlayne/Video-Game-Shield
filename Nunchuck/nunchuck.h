@@ -1,7 +1,7 @@
 /*
    Nunchuck.h - Library for the Nintendo Wii Nunchuck
    Created by: Adam Wolf and Matthew Beckler, Wayne and Layne, LLC
-   Last updated: August 16, 2010
+   Last updated: January 18, 2012 - Arduino 1.0 compatability fixes
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -21,7 +21,11 @@
 #ifndef Nunchuck_h
 #define Nunchuck_h
 
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
 #include "WProgram.h"
+#endif
 
 #define NUNCHUCK_I2C_ADDR               0xA4
 

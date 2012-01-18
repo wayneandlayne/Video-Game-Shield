@@ -2,7 +2,7 @@
    ClassicController.h - Library for the Nintendo Wii Classic Controller
    Created by: Adam Wolf and Matthew Beckler of Wayne and Layne, LLC
    http://wayneandlayne.com/projects/video-game-shield/
-   Last updated: October 31, 2010
+   Last updated: January 18, 2012 - Arduino 1.0 compatability fix
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,7 +23,11 @@
 #ifndef CLASSICCONTROLLER_H
 #define CLASSICCONTROLLER_H
 
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
 #include "WProgram.h"
+#endif
 
 #define WII_I2C_ADDR                            0xA4
 #define WII_SELECT_P1                           PORTB &= 0xEF // set PB4 = low

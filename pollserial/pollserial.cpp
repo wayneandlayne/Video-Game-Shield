@@ -21,6 +21,7 @@
   Modified 23 November 2006 by David A. Mellis
   
   Modified July 2010 by Myles D. Metzler
+  Updated January 18, 2012 - Arduino 1.0 compatability fix (write() now returns size_t)
 */
 
 #include <avr/io.h>
@@ -128,7 +129,7 @@ void pollserial::flush() {
 	rxbuffer.head = rxbuffer.tail;
 }
 
-void pollserial::write(uint8_t c) {
+size_t pollserial::write(uint8_t c) {
 #if defined ( UDR0 )
 	while (!((UCSR0A) & _BV(UDRE0)));
 	UDR0 = c;
