@@ -8,9 +8,10 @@
 
 #include <i2cmaster.h>
 
-//#define HACKVISION  //compile this for a hackvision
-#define VGS_CC  //compile this for a video game shield with a classic controller on p1
-//#define VGS_NUNCHUCK
+//#define HACKVISION  // compile this for a hackvision
+//#define VGS_CC  // compile this for a video game shield with a Wii classic controller on P1
+#define VGS_NUNCHUCK // compile this for a video game shield with a Wii nunchuck controller on P1
+
 //#define DISABLE_INTRO
 
 #ifdef HACKVISION
