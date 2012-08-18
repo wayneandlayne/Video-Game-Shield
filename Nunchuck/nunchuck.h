@@ -1,7 +1,10 @@
 /*
    Nunchuck.h - Library for the Nintendo Wii Nunchuck
    Created by: Adam Wolf and Matthew Beckler, Wayne and Layne, LLC
-   Last updated: January 18, 2012 - Arduino 1.0 compatability fixes
+   Recent updates:
+    August 18, 2012 - Added support for the Arduino Mega, which has a different RBx pin for the nunchuck select.
+    August 11, 2012 - Changed initialization bytes to support knock-off nunchucks
+    January 18, 2012 - Arduino 1.0 compatability fix
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -46,23 +49,36 @@
 #define NUNCHUCK_JOY_Y_SCALED_MIN       0
 #define NUNCHUCK_JOY_Y_SCALED_MAX       100
 
-#define NUNCHUCK_SELECT_P1              PORTB &= 0xEF // set PB4 = low
-#define NUNCHUCK_SELECT_P2              PORTB |= 0x10 // set PB4 = high
 #define NUNCHUCK_PLAYER_1               0
 #define NUNCHUCK_PLAYER_2               1
+
+// The VGS board has the nunchuck-select signal line connected to Arduino pin D12.
+// On the UNO and compatible (atmega328p et al) D12 is PB4.
+// On the MEGA 2560 and compatible (atmega2560 et al) D12 is PB6.
+// We use an ifdef here to make our NUNCHUCK_SELECT_P{1,2} macros be correct
+#if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega2561__)
+    #define NUNCHUCK_SELECT_SET_OUTPUT_DIR  DDRB |= 0x40  // set DDRB4 bit = make it an output (used for nunchuck select)
+    #define NUNCHUCK_SELECT_P1              PORTB &= 0xBF // set PB6 = low
+    #define NUNCHUCK_SELECT_P2              PORTB |= 0x40 // set PB6 = high
+#else
+    #define NUNCHUCK_SELECT_SET_OUTPUT_DIR  DDRB |= 0x10  // set DDRB4 bit = make it an output (used for nunchuck select)
+    #define NUNCHUCK_SELECT_P1              PORTB &= 0xEF // set PB4 = low
+    #define NUNCHUCK_SELECT_P2              PORTB |= 0x10 // set PB4 = high
+#endif
+
 
 class Nunchuck
 {
     public:
-        // returns 0=success, 1=could not access device
-        // Provide a 0 or 1 to which_nunchuck to specify which player this is
-        //   0 means "Player 1", 1 means "Player 2"
+        // Returns 0=success, 1=could not access device
+        // Argument specifies which nunchuck to initialize
+        //   pass in either NUNCHUCK_PLAYER_1 or NUNCHUCK_PLAYER_2
         unsigned char begin(unsigned char which_nunchuck);
 
         // Call this function to query the Nunchuck and update the data
         void update();
 
-        // low level functions
+        // Low level functions
         unsigned char joy_x();
         unsigned char joy_y();
         unsigned char acc_x();
@@ -91,7 +107,7 @@ class Nunchuck
         unsigned char joy_y_scaled();
 
     private:
-        // This stores the raw data from the nunchuck, properly translated
+        // This stores the raw data from the nunchuck
         unsigned char nunchuck_buf[6]; 
 
         // Stores a 0 = player 1, 1 = player 2
@@ -115,7 +131,5 @@ class Nunchuck
         unsigned char joy_y_scaled_min;
         unsigned char joy_y_scaled_max;
 };
-
-unsigned char decode_byte(unsigned char);
 
 #endif

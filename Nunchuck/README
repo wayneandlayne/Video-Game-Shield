@@ -3,6 +3,11 @@ This is an arduino library for using the Wii Nunchuck.
 It uses Peter Fleury's excellent i2c library instead of Wire.h,
 slightly modified to include a timeout feature on initialization.  
 
+Recent updates:
+    August 18, 2012 - Added support for the Arduino Mega, which has a different RBx pin for the nunchuck select.
+    August 11, 2012 - Changed initialization bytes to support knock-off nunchucks
+    January 18, 2012 - Arduino 1.0 compatability fix
+
 Adam Wolf and Matthew Beckler
 Wayne and Layne, LLC
 http://wayneandlayne.com/projects/video-game-shield/

@@ -1,8 +1,9 @@
 /*
-   Arduino sketch to demonstrate interfacing with a Nintendo Wii Nunchuck.
+   Arduino sketch to demonstrate interfacing with a Nintendo Wii Nunchuck. It will print the nunchuck information from P1 every second, to the serial terminal at 9600 baud.
    Created by Adam Wolf and Matthew Beckler
    Wayne and Layne, LLC - http://wayneandlayne.com/projects/video-game-shield/
-   Last updated: January 16, 2010
+   Recent updates:
+        August 18, 2012 - Changed file extension to .ino for Arduino 1.0
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
