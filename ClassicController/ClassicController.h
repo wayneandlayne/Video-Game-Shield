@@ -2,7 +2,9 @@
    ClassicController.h - Library for the Nintendo Wii Classic Controller
    Created by: Adam Wolf and Matthew Beckler of Wayne and Layne, LLC
    http://wayneandlayne.com/projects/video-game-shield/
-   Last updated: January 18, 2012 - Arduino 1.0 compatability fix
+   Recent updates:
+    August 11, 2012 - Changed initialization bytes to support knock-off nunchucks
+    January 18, 2012 - Arduino 1.0 compatability fixes
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -19,6 +21,7 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
    Some information taken from http://www.arduino.cc/playground/Main/WiiClassicController
+
  */
 #ifndef CLASSICCONTROLLER_H
 #define CLASSICCONTROLLER_H
@@ -29,11 +32,22 @@
 #include "WProgram.h"
 #endif
 
-#define WII_I2C_ADDR                            0xA4
-#define WII_SELECT_P1                           PORTB &= 0xEF // set PB4 = low
-#define WII_SELECT_P2                           PORTB |= 0x10 // set PB4 = high
-#define WII_PLAYER_1                            0
-#define WII_PLAYER_2                            1
+#define WII_I2C_ADDR               0xA4
+#define WII_PLAYER_1               0
+#define WII_PLAYER_2               1
+// The VGS board has the nunchuck/cc-select signal line connected to Arduino pin D12.
+// On the UNO and compatible (atmega328p et al) D12 is PB4.
+// On the MEGA 2560 and compatible (atmega2560 et al) D12 is PB6.
+// We use an ifdef here to make our WII_SELECT_P{1,2} macros be correct
+#if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega1281__) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega2561__)
+    #define WII_SELECT_SET_OUTPUT_DIR  DDRB |= 0x40  // set DDRB4 bit = make it an output (used for nunchuck select)
+    #define WII_SELECT_P1              PORTB &= 0xBF // set PB6 = low
+    #define WII_SELECT_P2              PORTB |= 0x40 // set PB6 = high
+#else
+    #define WII_SELECT_SET_OUTPUT_DIR  DDRB |= 0x10  // set DDRB4 bit = make it an output (used for nunchuck select)
+    #define WII_SELECT_P1              PORTB &= 0xEF // set PB4 = low
+    #define WII_SELECT_P2              PORTB |= 0x10 // set PB4 = high
+#endif
 
 // These are default values:
 #define CLASSICCONTROLLER_JOY_LEFT_MAX          22
@@ -56,9 +70,9 @@
 class ClassicController
 {
     public:
-        // returns 0=success, 1=could not access device
-        // Provide a 0 or 1 to which_controller to specify which player this is
-        //   0 means "Player 1", 1 means "Player 2"
+        // Returns 0=success, 1=could not access device
+        // Argument specifies which_nunchuck to initialize,
+        //   pass in either WII_PLAYER_1 or WII_PLAYER_2
         unsigned char begin(unsigned char which_controller);
 
         // Call this function to query the Controller and update the data
@@ -172,8 +186,6 @@ class ClassicController
         unsigned char joy_right_x_scaled_max;
         unsigned char joy_right_y_scaled_min;
         unsigned char joy_right_y_scaled_max;
-
-        unsigned char _decode_byte(unsigned char);
 };
 
 #endif

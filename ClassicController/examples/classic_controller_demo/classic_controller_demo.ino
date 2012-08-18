@@ -2,7 +2,9 @@
    Arduino sketch to demonstrate interfacing with a Nintendo Wii Classic Controller.
    Created by Adam Wolf and Matthew Beckler
    Wayne and Layne, LLC - http://wayneandlayne.com/projects/video-game-shield/
-   Last updated: January 16, 2011
+   Recent updates:
+        August 18, 2012 - Updated filename extension to .ino for arduino 1.0 compatability
+        January 16, 2011 - Initial release
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
