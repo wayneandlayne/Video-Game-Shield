@@ -1,11 +1,11 @@
 /*
-  ==Data Collection Example sketch==
-  Demonstrates collecting data with the Video Game Shield,
-  tracking and recording for long-term capture.
+   ==Data Collection Example sketch==
+   Demonstrates collecting data with the Video Game Shield,
+   tracking and recording for long-term capture.
 
-   Wayne and Layne, LLC
-   http://wayneandlayne.com
-   19/12/2010
+   Written by Matthew Beckler and Adam Wolf for Wayne and Layne, LLC
+   http://www.wayneandlayne.com/projects/video-game-shield/
+   Last updated: 19/12/2010
 
    Copyright (c) 2010, Wayne and Layne, LLC
 

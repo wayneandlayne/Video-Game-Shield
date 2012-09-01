@@ -113,15 +113,15 @@ void setup()
   TV.clear_screen();
   TV.printPGM(0, 0, PSTR("tv raycaster"));
   TV.delay_frame(60);
-  nunchuck_strafe.begin(NUNCHUCK_PLAYER_1);
-  nunchuck_turn.begin(NUNCHUCK_PLAYER_2);
+  nunchuck_strafe.begin(WII_PLAYER_1);
+  nunchuck_turn.begin(WII_PLAYER_2);
 }
 
 void loop()
 {
-  double posX = 10, posY = 10;        //x and y start position
-  double dirX = -1, dirY = 0;         //initial direction vector
-  double planeX = 0, planeY = 0.66;   //the 2d raycaster version of camera plane
+  double posX = 10, posY = 10;        // x and y start position
+  double dirX = -1, dirY = 0;         // initial direction vector
+  double planeX = 0, planeY = 0.66;   // the 2d raycaster version of camera plane
   
   // used in the drawing phase
   byte midpoint = RENDERHEIGHT/2; 
@@ -134,31 +134,31 @@ void loop()
     {
       // -------------------- Render the next frame -------------------------------
       
-      //calculate ray position and direction 
-      double cameraX = 2 * x / (double) RENDERWIDTH - 1; //x-coordinate in camera space
+      // calculate ray position and direction 
+      double cameraX = 2 * x / (double) RENDERWIDTH - 1; // x-coordinate in camera space
       double rayPosX = posX;
       double rayPosY = posY;
       double rayDirX = dirX + planeX * cameraX;
       double rayDirY = dirY + planeY * cameraX;
-      //which box of the map we're in  
+      // which box of the map we're in  
       int mapX = (int) rayPosX;
       int mapY = (int) rayPosY;
 
-      //length of ray from current position to next x or y-side
+      // length of ray from current position to next x or y-side
       double sideDistX;
       double sideDistY;
 
-      //length of ray from one x or y-side to next x or y-side
+      // length of ray from one x or y-side to next x or y-side
       double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
       double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
       double perpWallDist;
 
-      //what direction to step in x or y-direction (either +1 or -1)
+      // what direction to step in x or y-direction (either +1 or -1)
       int stepX;
       int stepY;
 
-      int side; //was a NS or a EW wall hit?
-      //calculate step and initial sideDist
+      int side; // was a NS or a EW wall hit?
+      // calculate step and initial sideDist
       if (rayDirX < 0)
       {
         stepX = -1;
@@ -180,10 +180,10 @@ void loop()
         sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
       }
       
-      //perform DDA
+      // perform DDA
       while (1)
       {
-        //jump to next map square, OR in x-direction, OR in y-direction
+        // jump to next map square, OR in x-direction, OR in y-direction
         if (sideDistX < sideDistY)
         {
           sideDistX += deltaDistX;
@@ -197,11 +197,11 @@ void loop()
           side = 1;
         }
         
-        //Check if ray has hit a wall
+        // Check if ray has hit a wall
         if (checkWorldMap(mapX, mapY) > 0)
           break;
       }
-      //Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
+      // Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
       if (side == 0)
       {
         perpWallDist = fabs((mapX - rayPosX + (1 - stepX) / 2) / rayDirX);
@@ -211,14 +211,14 @@ void loop()
         perpWallDist = fabs((mapY - rayPosY + (1 - stepY) / 2) / rayDirY);
       }
 
-      //Calculate height of line to draw on screen
+      // Calculate height of line to draw on screen
       byte lineHeight = abs((char)(RENDERHEIGHT / perpWallDist));
       if (lineHeight > RENDERHEIGHT)
       {
         lineHeight = RENDERHEIGHT;
       }
       
-      double wallX; //where exactly the wall was hit
+      double wallX; // where exactly the wall was hit
       if (side == 1)
       {
         wallX = rayPosX + ((mapY - rayPosY + (1 - stepY) / 2) / rayDirY) * rayDirX;

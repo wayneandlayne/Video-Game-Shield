@@ -5,11 +5,11 @@
 #include "WProgram.h"
 #endif
 
-  char cells_per_side = 3;
-  char border_size=2;
-  char top_right_x = 70;
-  char top_right_y = 6;
-  char cell_size=8;
+char cells_per_side = 3;
+char border_size=2;
+char top_right_x = 70;
+char top_right_y = 6;
+char cell_size=8;
   
 void draw_big_square_grid()
 {

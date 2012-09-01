@@ -1,16 +1,19 @@
 
 /*
-  Two Player Pong
-  by Wayne and Layne, LLC
+  Two Player Pong, with potentiometers instead of Wii Nunchucks
+  Written by Matthew Beckler and Adam Wolf for Wayne and Layne, LLC
   http://www.wayneandlayne.com/projects/video-game-shield/
-  v1.2, 2011-05-02
+  v1.1, 1/16/2011
 
-  Demonstrates using both nunchucks with the Video Game Shield,
+  Demonstrates using potentiometers with the Video Game Shield,
   in a fun and simple pong-like game. We also have a version that
-  uses potentiometers as the controllers, if you don't have any
-  Wii nunchucks to use.
+  uses the Wii Nunchucks as controllers.
 
-  Includes new pause functionality added by forum member Pascal König.
+  Connect the wiper of a potentiometer to analog 0 for player 1, and
+  analog 1 for player 2, to be the controllers. Connect the other two
+  pins of the potentiometer to 5v and 0v. For more details on this
+  circuit, please check out our blog post:
+        http://www.wayneandlayne.com/?p=296
 
   Copyright (c) 2011, Wayne and Layne, LLC
   
@@ -27,18 +30,14 @@
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 */
 
-#include <i2cmaster.h>
-#include <nunchuck.h>
 #include <TVout.h>
 #include <font4x6.h>
-#include <VideoGameHelper.h>
 #include <avr/pgmspace.h>
 
 TVout TV;
-Nunchuck player1;
-Nunchuck player2;
 
 #define PADDLE_MOVEMENT 3
 #define PADDLE_HEIGHT 10
@@ -51,9 +50,6 @@ char ball_dy = 1;
 
 byte score[] = {0, 0};
 
-byte pause = 0; // 0 = not paused, 1 = player 1 paused, 2 = player 2 paused
-byte pause_timer = 0; // used to debounce switching between pause and un-pause
-
 byte leftpaddle_y, rightpaddle_y;
 
 #define BEEP TV.tone(2000, 30)
@@ -62,8 +58,6 @@ byte leftpaddle_y, rightpaddle_y;
 #define STATE_START   1
 #define STATE_PLAY    2
 #define STATE_MISS    3
-#define STATE_PAUSE   4
-
 byte state = STATE_TEST;
 byte missed = 0; // who missed?
 
@@ -110,7 +104,7 @@ void draw_ball()
 
 void reset_ball_and_paddles()
 {
-  byte noise = analogRead(0);
+  byte noise = analogRead(2);
   
   ball_x = (noise & 0x04) ? ((noise & 0x08) ? hres/4 : (hres/4 + hres/2)) : hres / 2;
   ball_y = (noise & 0x10) ? ((noise & 0x20) ? vres/4 : (vres/4 + vres/2)) : vres / 2;
@@ -141,7 +135,11 @@ void loop()
       break;
       
     case STATE_START:
-      title_screen_init_nunchucks(&TV, "Pong", &player1, &player2, true);
+      TV.clear_screen();
+      TV.print(0, 0, "Pong");
+      TV.print(0, 10, "Connect A0 and A1 to");
+      TV.print(0, 20, "potentiometers.");
+      TV.delay_frame(100);
       
       hres = TV.hres() - 6; // this is based on what's visible on my tv
       vres = TV.vres();
@@ -157,8 +155,6 @@ void loop()
       break;
       
     case STATE_PLAY:
-      pause_timer++;
-
       // top and bottom walls
       if (ball_y == vres || ball_y == 0)
       {
@@ -198,13 +194,10 @@ void loop()
       }
       
       // update paddle positions
+      leftpaddle_y =  map(analogRead(0), 0, 1024, 0, vres - PADDLE_HEIGHT);
+      rightpaddle_y = map(analogRead(1), 0, 1024, 0, vres - PADDLE_HEIGHT);
+      /*
       player1.update();
-      if (player1.button_z() && pause_timer > 20)
-      {
-        pause_timer = 0;
-        state = STATE_PAUSE;
-        pause = 1;
-      }
       if (player1.joy_up())
       {
         leftpaddle_y -= PADDLE_MOVEMENT;
@@ -216,12 +209,6 @@ void loop()
         if (leftpaddle_y > (vres - PADDLE_HEIGHT - 1)) leftpaddle_y = vres - PADDLE_HEIGHT;
       }
       player2.update();
-      if (player2.button_z() && pause_timer > 20)
-      {
-        pause_timer = 0;
-        state = STATE_PAUSE;
-        pause = 2;
-      }
       if (player2.joy_up())
       {
         rightpaddle_y -= PADDLE_MOVEMENT;
@@ -232,6 +219,9 @@ void loop()
         rightpaddle_y += PADDLE_MOVEMENT;
         if (rightpaddle_y > (vres - PADDLE_HEIGHT - 1)) rightpaddle_y = vres - PADDLE_HEIGHT;
       }
+      */
+      
+      
       
       // update ball position
       draw_ball();
@@ -265,24 +255,6 @@ void loop()
         init_display();
         draw_ball(); // pre-draw the ball so we can erase it
         state = STATE_PLAY;
-      }
-      break;
-
-    case STATE_PAUSE:
-      pause_timer++;
-      TV.printPGM(hres/2 - 10, vres/2, PSTR("Pause!"));
-      player1.update();
-      player2.update();
-      if ( (pause_timer > 20) &&
-           ( (pause == 1 && player1.button_z()) ||
-             (pause == 2 && player2.button_z()) ) )
-      {
-        state = STATE_PLAY;
-        pause = 0;
-        pause_timer = 0;
-        TV.clear_screen();
-        init_display();
-        draw_ball(); // pre-draw the ball so we can erase it
       }
       break;
       

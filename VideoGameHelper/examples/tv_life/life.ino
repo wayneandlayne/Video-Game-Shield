@@ -1,4 +1,5 @@
-unsigned char neighbors(unsigned char x, unsigned char y) {
+unsigned char neighbors(unsigned char x, unsigned char y)
+{
   unsigned char neighbor_count;
 
   if (x > 0 && x < XCOLS-1 && y > 0 && y < YCOLS-1)

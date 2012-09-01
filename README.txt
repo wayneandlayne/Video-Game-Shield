@@ -1,6 +1,6 @@
 Video Game Shield
 by Wayne and Layne, LLC
-http://wayneandlayne.com/project/video-game-shield/
+http://www.wayneandlayne.com/projects/video-game-shield/
 ==================================================
 
 This includes libraries and examples for the Video Game Shield.  The Video Game Shield is an expansion board for the Arduino microcontroller board.  It provides circuitry to enable analog black and white TV output as well as use two Wii Nunchucks.

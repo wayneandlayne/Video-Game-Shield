@@ -1,7 +1,9 @@
-/* John Conway's Game of Life
-by Wayne and Layne, LLC
-http://wayneandlayne.com
-v1.1, 19/12/2010
+/* 
+   
+   John Conway's Game of Life
+   Written by Adam Wolf and Matthew Beckler for Wayne and Layne, LLC
+   http://www.wayneandlayne.com/projects/video-game-shield/
+    v1.1, 19/12/2010
 
 This is intended for the Video Game Shield, and uses the TVOut library and the software I2C Nunchuck library.
 
@@ -28,7 +30,6 @@ Features:
    You should have received a copy of the GNU General Public License along
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
 
 */
 
