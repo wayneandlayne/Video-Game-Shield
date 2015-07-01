@@ -1,10 +1,15 @@
 /*
+   ClassicController - A software library for Nintendo Wii Classic Controllers.
+
+   Copyright (c) 2015 Matthew Beckler and Adam Wolf, for Wayne and Layne, LLC
+   http://wayneandlayne.com/projects/video-game-shield/
+
    Arduino sketch to demonstrate interfacing with a Nintendo Wii Classic Controller.
-   Created by Adam Wolf and Matthew Beckler
-   Wayne and Layne, LLC - http://wayneandlayne.com/projects/video-game-shield/
-   Recent updates:
-        August 18, 2012 - Updated filename extension to .ino for arduino 1.0 compatability
-        January 16, 2011 - Initial release
+   It will print the nunchuck information from port P1 every second,
+      to the serial terminal at 9600 baud.
+
+   Some useful information provided by:
+   http://www.arduino.cc/playground/Main/WiiClassicController
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -19,9 +24,9 @@
    You should have received a copy of the GNU General Public License along
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-   
-   Some useful information provided by:
-   http://www.arduino.cc/playground/Main/WiiClassicController
+
+   Wayne and Layne, LLC and our products are not connected to or endorsed by Nintendo.
+   Nintendo, Wii, and Nunchuck are trademarks of Nintendo
 */
 
 #include <i2cmaster.h>
