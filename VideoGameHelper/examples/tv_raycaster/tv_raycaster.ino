@@ -113,8 +113,8 @@ void setup()
   TV.clear_screen();
   TV.printPGM(0, 0, PSTR("tv raycaster"));
   TV.delay_frame(60);
-  nunchuck_strafe.begin(WII_PLAYER_1);
-  nunchuck_turn.begin(WII_PLAYER_2);
+  nunchuck_strafe.begin(NUNCHUCK_PLAYER_1);
+  nunchuck_turn.begin(NUNCHUCK_PLAYER_2);
 }
 
 void loop()
