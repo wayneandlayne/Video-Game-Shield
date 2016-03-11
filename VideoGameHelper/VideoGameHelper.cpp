@@ -13,12 +13,12 @@
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License along
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -39,28 +39,34 @@
 void title_screen_init_nunchucks(TVout* TV, char* title, Nunchuck* player1, Nunchuck* player2, boolean p2_required)
 {
   TV->clear_screen();
-  
+
   TV->print(0, 0, title);
   // TODO draw an image somewhere?
   TV->draw_line(0, 15, TV->hres()-1, 15, 1);
   if (p2_required)
+  {
     TV->printPGM(0, 20, PSTR("Connect P1 & P2"));
+  }
   else
+  {
     TV->printPGM(0, 20, PSTR("Connect P1"));
-  
+  }
+
   boolean p1_ready = false;
   boolean p2_ready = false;
   boolean ready = false;
-  
+
   while (1)
   {
     if (ready)
     {
       player1->update();
       if (player1->button_c())
+      {
         break;
+      }
     }
-    
+
     if (!p1_ready)
     {
       if (player1->begin(NUNCHUCK_PLAYER_1) == 0)
@@ -75,7 +81,7 @@ void title_screen_init_nunchucks(TVout* TV, char* title, Nunchuck* player1, Nunc
       }
       // else timeout, not connected yet
     }
-    
+
     if (!p2_ready)
     {
       if (player2->begin(NUNCHUCK_PLAYER_2) == 0)
@@ -90,7 +96,7 @@ void title_screen_init_nunchucks(TVout* TV, char* title, Nunchuck* player1, Nunc
       }
       // else timeout, not connected yet
     }
-      
+
     TV->delay_frame(10);
   }
 }
@@ -104,10 +110,11 @@ unsigned char question_box(TVout* TV, Nunchuck* player, char* question, char* an
     TV->print(0, 0, question);
     TV->draw_line(0, 15, TV->hres() - 1, 15, 1);
     for (unsigned char i = 0; i < num_answers; i++)
+    {
         TV->print(10, 20 + i * 10, answers[i]);
+    }
 
     unsigned char choice = default_choice;
-    //TV->draw_box(3, 10*choice+23, 4, 4, 1, 1, 0, 0); // draw selection box
     TV->draw_rect(3, 10*choice+20, 4, 4, 1, 1); // draw selection box
     while (1)
     {
@@ -116,21 +123,21 @@ unsigned char question_box(TVout* TV, Nunchuck* player, char* question, char* an
         player->update();
         if (player->joy_up())
         {
-            //TV->draw_box(3, 10*choice+23, 4, 4, 0, 0, 0, 0); // remove selection box
             TV->draw_rect(3, 10*choice+20, 4, 4, 0, 0); // remove selection box
             if (choice == 0)
+            {
                 choice = num_answers - 1;
+            }
             else
+            {
                 choice--;
-	    //TV->draw_box(3, 10*choice+23, 4, 4, 1, 1, 0, 0); // draw selection box
+            }
             TV->draw_rect(3, 10*choice+20, 4, 4, 1, 1); // draw selection box
         }
         if (player->joy_down())
         {
-           // TV->draw_box(3, 10*choice+23, 4, 4, 0, 0, 0, 0); // remove selection box
             TV->draw_rect(3, 10*choice+20, 4, 4, 0, 0); // remove selection box
             choice = (choice + 1) % num_answers;
-            //TV->draw_box(3, 10*choice+23, 4, 4, 1, 1, 0, 0); // draw selection box
             TV->draw_rect(3, 10*choice+20, 4, 4, 1, 1); // draw selection box
         }
 
@@ -166,7 +173,9 @@ void nunchuck_calibration(TVout* TV, Nunchuck* player)
     {
         player->update();
         if (!player->button_c())
+        {
             break;
+        }
     }
 
     TV->clear_screen();
@@ -199,7 +208,6 @@ void nunchuck_calibration(TVout* TV, Nunchuck* player)
         {
             x_min = x;
             itoa(x_min, buf, 10);
-            //TV->draw_box(vert_left, 26, TV->hres() - vert_left, 10, 0, 0, 0, 1);
             TV->draw_rect(vert_left, 26, TV->hres() - vert_left, 8, 0, 0);
             TV->print(vert_left, 26, buf);
         }
@@ -207,7 +215,6 @@ void nunchuck_calibration(TVout* TV, Nunchuck* player)
         {
             x_max = x;
             itoa(x_max, buf, 10);
-            //TV->draw_box(vert_left, 36, TV->hres() - vert_left, 10, 0, 0, 0, 1);
             TV->draw_rect(vert_left, 36, TV->hres() - vert_left, 8, 0, 0);
             TV->print(vert_left, 36, buf);
         }
@@ -215,7 +222,6 @@ void nunchuck_calibration(TVout* TV, Nunchuck* player)
         {
             y_min = y;
             itoa(y_min, buf, 10);
-            //TV->draw_box(vert_left, 66, TV->hres() - vert_left, 10, 0, 0, 0, 1);
             TV->draw_rect(vert_left, 66, TV->hres() - vert_left, 8, 0, 0);
             TV->print(vert_left, 66, buf);
         }
@@ -223,7 +229,6 @@ void nunchuck_calibration(TVout* TV, Nunchuck* player)
         {
             y_max = y;
             itoa(y_max, buf, 10);
-            //TV->draw_box(vert_left, 76, TV->hres() - vert_left, 10, 0, 0, 0, 1);
             TV->draw_rect(vert_left, 76, TV->hres() - vert_left, 8, 0, 0);
             TV->print(vert_left, 76, buf);
         }
@@ -234,7 +239,7 @@ void nunchuck_calibration(TVout* TV, Nunchuck* player)
     player->joy_set_min_max(x_min, x_max, y_min, y_max);
 }
 
-// Asks the player to enter their three initials, storing them in buf, 
+// Asks the player to enter their three initials, storing them in buf,
 // which needs to be size 4 or more, to include the '\0' at the end.
 // Allows for the entry of A-Z and 0-9.
 void high_score_get_name(TVout* TV, Nunchuck* player, char* buf)
@@ -261,33 +266,63 @@ void high_score_get_name(TVout* TV, Nunchuck* player, char* buf)
         if (player->joy_right())
         {
             TV->print_char(30 + which_digit * 8, 50, 0);
-            if (which_digit == 2) which_digit = 0;
-            else which_digit++;
+            if (which_digit == 2)
+            {
+                which_digit = 0;
+            }
+            else
+            {
+                which_digit++;
+            }
             TV->print_char(30 + which_digit * 8, 50, 24);
         }
         if (player->joy_left())
         {
             TV->print_char(30 + which_digit * 8, 50, 0);
-            if (which_digit == 0) which_digit = 2;
-            else which_digit--;
+            if (which_digit == 0)
+            {
+                which_digit = 2;
+            }
+            else
+            {
+                which_digit--;
+            }
             TV->print_char(30 + which_digit * 8, 50, 24);
         }
         if (player->joy_up())
         {
-            if (buf[which_digit] == 'A')  buf[which_digit] = '9';
-            if (buf[which_digit] == '0')  buf[which_digit] = 'Z';
-            else                          buf[which_digit]--;
+            if (buf[which_digit] == 'A')
+            {
+                buf[which_digit] = '9';
+            }
+            if (buf[which_digit] == '0')
+            {
+                buf[which_digit] = 'Z';
+            }
+            else
+            {
+                buf[which_digit]--;
+            }
             TV->print(30, 40, buf);
         }
         if (player->joy_down())
         {
-            if (buf[which_digit] == 'Z')  buf[which_digit] = '0';
-            if (buf[which_digit] == '9')  buf[which_digit] = 'A';
-            else                          buf[which_digit]++;
+            if (buf[which_digit] == 'Z')
+            {
+                buf[which_digit] = '0';
+            }
+            if (buf[which_digit] == '9')
+            {
+                buf[which_digit] = 'A';
+            }
+            else
+            {
+                buf[which_digit]++;
+            }
             TV->print(30, 40, buf);
         }
         if (player->button_c())
-        { 
+        {
             break;
         }
 
@@ -303,7 +338,7 @@ void high_score_get_name(TVout* TV, Nunchuck* player, char* buf)
 void high_score_show_list(TVout* TV, Nunchuck* player, char* names[], unsigned long scores[], unsigned char num)
 {
   TV->clear_screen();
-  
+
   TV->printPGM(0, 0, PSTR("High Scores"));
   TV->draw_line(0, 15, TV->hres() - 1, 15, 1);
   char buf[10];
@@ -315,12 +350,14 @@ void high_score_show_list(TVout* TV, Nunchuck* player, char* names[], unsigned l
     TV->print(TV->hres() - 8*strlen(buf) - 8, 20+10*i, buf);
   }
   TV->printPGM(0, 85, PSTR("Press C to continue"));
-  
+
   while(1)
   {
     player->update();
     if (player->button_c())
+    {
       break;
+    }
   }
 }
 
