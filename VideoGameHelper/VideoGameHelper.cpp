@@ -1,6 +1,6 @@
 /*
-   Video Game Helper library - Version 1.01 - September 20, 2010
-   Copyright (c) 2010 Wayne and Layne, LLC
+   Video Game Helper library
+   Copyright (c) 2016 Wayne and Layne, LLC
 
    This library is just a collection of helpful functions and routines that
    might be useful when you're writing video games and other programs for
