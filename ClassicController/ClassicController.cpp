@@ -10,12 +10,12 @@
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License along
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -211,8 +211,8 @@ unsigned char ClassicController::joy_left_y()
 }
 unsigned char ClassicController::joy_right_x()
 {
-    return ((data[0] & 0xC0) >> 2) + 
-           ((data[1] & 0xC0) >> 3) + 
+    return ((data[0] & 0xC0) >> 2) +
+           ((data[1] & 0xC0) >> 3) +
            ((data[2] & 0x80) >> 6);
 }
 unsigned char ClassicController::joy_right_y()
@@ -223,7 +223,7 @@ unsigned char ClassicController::joy_right_y()
 // Left and right shoulder button pressure
 unsigned char ClassicController::shoulder_left()
 {
-    return ((data[2] & 0x60) >> 2) + 
+    return ((data[2] & 0x60) >> 2) +
            ((data[3] & 0xE0) >> 5);
 }
 unsigned char ClassicController::shoulder_right()
