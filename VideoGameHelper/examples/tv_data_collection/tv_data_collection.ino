@@ -13,12 +13,12 @@
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License along
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -83,7 +83,7 @@ void draw_plot()
     byte edge_right = TV.hres() - 5;
     byte edge_top = 25;
     byte edge_bottom = TV.vres() - 5;
-    
+
     byte oldx = edge_left;
     byte oldy = map(samples[current_sample_ix + 1], 0, 255, edge_bottom, edge_top); // TODO make y axis have auto scaling or pre-set scaling?
     for (byte ix = 1; ix < NUM_SAMPLES; ix++)
@@ -134,7 +134,7 @@ void loop()
     TV.print(0, 0, "TV Data Collection");
     TV.print(0, 10, "Wayne and Layne");
     TV.delay_frame(120);
-    
+
     TV.clear_screen();
     draw_plot();
 

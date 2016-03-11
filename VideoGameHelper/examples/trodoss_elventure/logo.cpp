@@ -11,10 +11,9 @@ void drawLogo(char start)
   char x_offset = 48;
   for (char i=start; i < (start+4); i++)
   {
-      //draw logo element
-      TV.bitmap(x_offset, 16, logo_bitmap + (SIZEOF_LOGO_RECORD * i));
-   
+    //draw logo element
+    TV.bitmap(x_offset, 16, logo_bitmap + (SIZEOF_LOGO_RECORD * i));
     x_offset += 8;
-  }   
+  }
 }
 

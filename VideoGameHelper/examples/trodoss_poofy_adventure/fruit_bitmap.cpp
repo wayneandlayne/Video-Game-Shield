@@ -33,3 +33,4 @@ PROGMEM prog_uchar fruit_bitmap[] = {
 0b01100000,
 
 };
+

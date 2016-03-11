@@ -78,9 +78,9 @@ void setup() {
   TV.select_font(font6x8);
   TV.delay(500);
   TV.printPGM(25,60,PSTR(STARTMSG));
-  
 
-  
+
+
 
 #ifdef HACKVISION
   TV.printPGM(0,H-16,PSTR("To pause, press"));
@@ -190,7 +190,7 @@ void printboard() {
 
   // label the next piece
   TV.printPGM(NXT_X,NXT_Y-8,PSTR("Next"));
-  
+
   //print arduino tetris vertically allong the left
   TV.select_font(font8x8);
   TV.printPGM(0,NXT_Y+TETROMINO_SIZE*TILE_SIZE+8,PSTR("A\nrT\ndE\nuT\niR\nnI\noS"));
@@ -248,7 +248,7 @@ void platformReadInput(StcGame *gameInstance){
       prev &= ~PAUSBIT;
     }
   }
-  
+
   if (game.isOver && Controller.firePressed())
     prev |= RESBIT;
   else if (PRES) {
@@ -257,7 +257,7 @@ void platformReadInput(StcGame *gameInstance){
       prev &= ~RESBIT;
     }
   }
-  
+
   if (Controller.upPressed()) {
     if (!PUP) {
       gameOnKeyDown(&game, EVENT_ROTATE_CW);
@@ -267,7 +267,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PUP){
     prev &= ~UPBIT;
   }
- 
+
   if (!game.isOver && Controller.firePressed()) {
     if (!PFIRE) {
       gameOnKeyDown(&game, EVENT_DROP);
@@ -277,7 +277,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PFIRE) {
     prev &= ~FIREBIT;
   }
- 
+
   if (Controller.leftPressed() && !PPAUSE) {
     if (!PLEFT) {
       gameOnKeyDown(&game, EVENT_MOVE_LEFT);
@@ -288,7 +288,7 @@ void platformReadInput(StcGame *gameInstance){
     gameOnKeyUp(&game, EVENT_MOVE_LEFT);
     prev &= ~LEFTBIT;
   }
-  
+
   if (Controller.rightPressed() && !PPAUSE) {
     if (!PRIGHT) {
       gameOnKeyDown(&game, EVENT_MOVE_RIGHT);
@@ -299,7 +299,7 @@ void platformReadInput(StcGame *gameInstance){
     gameOnKeyUp(&game, EVENT_MOVE_RIGHT);
     prev &= ~RIGHTBIT;
   }
-  
+
   if (Controller.downPressed()) {
     if (!PDOWN) {
       gameOnKeyDown(&game, EVENT_MOVE_DOWN);
@@ -330,7 +330,7 @@ void platformReadInput(StcGame *gameInstance){
 #define PSELECT (prev & SELECTBIT)
 
   cc.update();
-  
+
   if (cc.button_up()) {
     if (!PUP) {
       gameOnKeyDown(&game, EVENT_ROTATE_CW);
@@ -340,7 +340,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PUP){
     prev &= ~UPBIT;
   }
-  
+
   if (cc.button_plus_start()) {
     if (!PSTART) {
       gameOnKeyDown(&game, EVENT_PAUSE);
@@ -350,7 +350,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PSTART){
     prev &= ~STARTBIT;
   }
-  
+
   if (cc.button_minus_select()) {
     if (!PSELECT) {
       gameOnKeyDown(&game, EVENT_RESTART);
@@ -360,7 +360,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PSELECT){
     prev &= ~SELECTBIT;
   }
-  
+
   if (cc.button_a()) {
     if (!PA) {
       gameOnKeyDown(&game, EVENT_DROP);
@@ -370,7 +370,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PA) {
     prev &= ~ABIT;
   }
-  
+
   if (cc.button_left()) {
     if (!PLEFT) {
       gameOnKeyDown(&game, EVENT_MOVE_LEFT);
@@ -381,7 +381,7 @@ void platformReadInput(StcGame *gameInstance){
     gameOnKeyUp(&game, EVENT_MOVE_LEFT);
     prev &= ~LEFTBIT;
   }
-  
+
   if (cc.button_right()) {
     if (!PRIGHT) {
       gameOnKeyDown(&game, EVENT_MOVE_RIGHT);
@@ -392,7 +392,7 @@ void platformReadInput(StcGame *gameInstance){
     gameOnKeyUp(&game, EVENT_MOVE_RIGHT);
     prev &= ~RIGHTBIT;
   }
-  
+
   if (cc.button_down()) {
     if (!PDOWN) {
       gameOnKeyDown(&game, EVENT_MOVE_DOWN);
@@ -421,7 +421,7 @@ void platformReadInput(StcGame *gameInstance){
 #define PSELECT (prev & SELECTBIT)
 
   n.update();
-  
+
   if (n.joy_up()) {
     if (!PUP) {
       gameOnKeyDown(&game, EVENT_ROTATE_CW);
@@ -431,7 +431,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PUP){
     prev &= ~UPBIT;
   }
-  
+
   if (n.button_c()) {
     if (!PSTART) {
       gameOnKeyDown(&game, EVENT_PAUSE);
@@ -451,7 +451,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PSELECT){
     prev &= ~SELECTBIT;
   }
-  
+
   if (n.button_z()) {
     if (!PA) {
       gameOnKeyDown(&game, EVENT_DROP);
@@ -461,7 +461,7 @@ void platformReadInput(StcGame *gameInstance){
   else if (PA) {
     prev &= ~ABIT;
   }
-  
+
   if (n.joy_left()) {
     if (!PLEFT) {
       gameOnKeyDown(&game, EVENT_MOVE_LEFT);
@@ -472,7 +472,7 @@ void platformReadInput(StcGame *gameInstance){
     gameOnKeyUp(&game, EVENT_MOVE_LEFT);
     prev &= ~LEFTBIT;
   }
-  
+
   if (n.joy_right()) {
     if (!PRIGHT) {
       gameOnKeyDown(&game, EVENT_MOVE_RIGHT);
@@ -483,7 +483,7 @@ void platformReadInput(StcGame *gameInstance){
     gameOnKeyUp(&game, EVENT_MOVE_RIGHT);
     prev &= ~RIGHTBIT;
   }
-  
+
   if (n.joy_down()) {
     if (!PDOWN) {
       gameOnKeyDown(&game, EVENT_MOVE_DOWN);
@@ -498,7 +498,7 @@ void platformReadInput(StcGame *gameInstance){
 
 }
 
-  
+
 
 void setCell(char x, char y,char bx, char by, char c, char f) {
   int index = bx/8 + x/2 + by*W/8 + y*4*W/8;
@@ -563,19 +563,19 @@ void update_music()
     if (current_note == SONG_LENGTH)
     {
        //it's the end of the song!
-       current_note = 0;    
+       current_note = 0;
     }
-    
+
       int note_duration = (pgm_read_word_near(duration_t1_c1 + current_note)/16)*5;
       next_note_start_time = TV.millis()+note_duration+PAUSE_BETWEEN_NOTES;
-      TV.tone(pgm_read_word_near(melody_t1_c1 + current_note), note_duration); 
+      TV.tone(pgm_read_word_near(melody_t1_c1 + current_note), note_duration);
     if (current_note == SONG_LENGTH-1)
     {
       next_note_start_time += PAUSE_BETWEEN_SONGS;
       next_note_start_time -= PAUSE_BETWEEN_NOTES;
     }
     current_note++;
-    
+
   }
 }
 
@@ -596,7 +596,7 @@ if (!game.isPaused && !game.isOver) {
       }
     }
     update_music();
-  
+
 #ifdef STC_SHOW_GHOST_PIECE
     for (i = 0; i < TETROMINO_SIZE; i++) {
       for (j = 0; j < TETROMINO_SIZE; j++) {
@@ -622,13 +622,13 @@ if (!game.isPaused && !game.isOver) {
         setCell (game.nextBlock.x + i+1,game.nextBlock.y + j+1,NXT_X,NXT_Y,game.nextBlock.cells[i][j],0);
       }
     }
-  
+
     //update the stats
     TV.print(BOARD_X+BOARD_TILEMAP_WIDTH*TILE_SIZE+26,0,game.stats.level);
     TV.print(BOARD_X+BOARD_TILEMAP_WIDTH*TILE_SIZE+10,20,game.stats.score);
     TV.print(BOARD_X+BOARD_TILEMAP_WIDTH*TILE_SIZE+10,36,game.stats.lines);
   }
-  
+
   if (game.isPaused)
     TV.printPGM(BOARD_X+4,BOARD_Y+40,PSTR("Pause"));
   if (game.isOver) {
@@ -636,14 +636,14 @@ if (!game.isPaused && !game.isOver) {
     TV.printPGM(BOARD_X+7,BOARD_Y+44,PSTR("Over"));
     restarted = 1;
   }
-  
+
   if (restarted == 1 && game.isOver == 0) {
     printboard();
     restarted = 0;
   }
-  
+
   game.stateChanged = 0;
- 
+
 }
 
 //return millis for this since this uses TVout we need to return TVouts version of millis.

@@ -16,9 +16,8 @@ RoomElement fruit_hit(RoomElement element)
 {
   //erase the old fruit image
   eraseBitmapRect(element.x, element.y, fruit_bitmap);
-		 
+
   element.state = STATE_HIDDEN;
   return element;
 }
-
 

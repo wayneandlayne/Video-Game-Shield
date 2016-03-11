@@ -31,4 +31,4 @@ void room_handle_elements();
 void room_update_element (RoomElement element);
 RoomElement room_get_element (char id);
 bool room_test_element(RoomElement element, char x, char y);
-#endif __ROOM__
+#endif // __ROOM__

@@ -344,7 +344,7 @@ static void onFilledRows(StcGame *game, int filledRows) {
         game->stats.level++;
 
         /* Increase speed for falling tetrominoes */
-        game->data->fallingDelay = (int)(DELAY_FACTOR_FOR_LEVEL_UP * game->data->fallingDelay 
+        game->data->fallingDelay = (int)(DELAY_FACTOR_FOR_LEVEL_UP * game->data->fallingDelay
                                          / DELAY_DIVISOR_FOR_LEVEL_UP);
     }
 }
@@ -443,11 +443,11 @@ static void dropTetromino(StcGame *game) {
 
     /* Update score */
     if (game->showShadow) {
-        game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1) 
+        game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1)
                                     / SCORE_DROP_WITH_SHADOW_DIVISOR);
     }
     else {
-        game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1) 
+        game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1)
                                     / SCORE_DROP_DIVISOR);
     }
 #else
@@ -458,7 +458,7 @@ static void dropTetromino(StcGame *game) {
     moveTetromino(game, 0, 1); /* Force lock */
 
     /* Update score */
-    game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1) 
+    game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1)
                                 / SCORE_DROP_DIVISOR);
 #endif
 }
@@ -554,7 +554,7 @@ void gameUpdate(StcGame *game) {
                 }
                 if ((game->data->events & EVENT_MOVE_DOWN) != 0) {
                     /* Update score if the user accelerates downfall */
-                    game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1) 
+                    game->stats.score += (long)(SCORE_2_FILLED_ROW * (game->stats.level + 1)
                                                 / SCORE_MOVE_DOWN_DIVISOR);
 
                     moveTetromino(game, 0, 1);
@@ -638,3 +638,4 @@ void gameOnKeyUp(StcGame *game, int command) {
 #endif /* STC_AUTO_ROTATION */
     }
 }
+

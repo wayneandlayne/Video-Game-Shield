@@ -51,15 +51,15 @@ void setup()
   TV.select_font(font4x6);
   TV.delay_frame(60);
   state = STATE_START;
- 
+
   randomSeed(analogRead(0));
   player = random(1, 3);
-  
+
   title_screen_init_nunchucks(&TV, "TicTacToe", &player1, &player2, true);
   // If we set the thresholds to different values, we can activate diagonal movement of the cursor:
   player1.joy_set_threshold(80, 170, 80, 170, 30);
   player2.joy_set_threshold(80, 170, 80, 170, 30);
-  
+
   hres = TV.hres();
   vres = TV.vres();
 
@@ -93,7 +93,7 @@ void draw_x(byte index)
   byte x_right =  ((((index % 3) + 1) * hres) / 3) - x_inset;
   byte y_top =    (((index / 3) * vres) / 3) + y_inset;
   byte y_bottom = ((((index / 3) + 1) * vres) / 3) - y_inset;
-    
+
   TV.draw_line(x_left, y_top,    x_right, y_bottom, 1);
   TV.draw_line(x_left, y_bottom, x_right, y_top,    1);
 }
@@ -149,7 +149,7 @@ byte set_field(byte player)
 void update_cursor(Nunchuck* player)
 {
     player->update();
-    
+
     if (player->joy_up())
     {
         cursor_y--;
@@ -223,11 +223,11 @@ void loop()
     {
         case STATE_TEST:
             for (byte t = 0; t < 10; t++)
-            {       
+            {
                 TV.delay_frame(20);
             }
             break;
-            
+
         case STATE_START:
             TV.clear_screen();
             init_display();
@@ -240,7 +240,7 @@ void loop()
 
             state = STATE_PLAY;
             break;
-            
+
         case STATE_PLAY:
             draw_cursor();
             if (player == 1)
@@ -248,7 +248,7 @@ void loop()
                 update_cursor(&player1);
                 if (player1.button_z())
                 {
-                    if (set_field(1) == 1)       
+                    if (set_field(1) == 1)
                     {
                         player = 2;
                         TV.printPGM((hres / 2) - 16, 0, PSTR("Player 2"));

@@ -43,3 +43,4 @@ PROGMEM prog_uchar snake_bitmap[] = {
 0b01111100,
 
 };
+

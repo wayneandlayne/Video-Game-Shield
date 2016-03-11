@@ -12,9 +12,9 @@ unsigned char neighbors(unsigned char x, unsigned char y)
       is_alive((x  - 1) , (y + 1)) +
       is_alive((x  - 1), (y - 1)) +
       is_alive((x + 1), (y - 1));
-  } 
-  else 
-  {  
+  }
+  else
+  {
     neighbor_count = is_alive((x + 1) % XCOLS, y) +
       is_alive(x, (y + 1) % YCOLS) +
       is_alive((x + XCOLS - 1) % XCOLS, y) +
@@ -23,7 +23,7 @@ unsigned char neighbors(unsigned char x, unsigned char y)
       is_alive((x + XCOLS - 1) % XCOLS, (y + 1) % YCOLS) +
       is_alive((x + XCOLS - 1) % XCOLS, (y + YCOLS - 1) % YCOLS) +
       is_alive((x + 1) % XCOLS, (y + YCOLS - 1) % YCOLS);
-  } 
+  }
   return neighbor_count;
 }
 
@@ -58,7 +58,7 @@ long  update_field()
     for (unsigned char y = 0; y < YCOLS; y++)
     {
       //default is for cell to stay the same
-      life[x][y] = display.screen[x+y*display.hres];  
+      life[x][y] = display.screen[x+y*display.hres];
     }
   }
 
@@ -233,7 +233,7 @@ unsigned char update_cells(char prev, char current, char next, char top_prev, ch
   }
 
   return output;
-}  
+}
 
 
 
@@ -245,7 +245,7 @@ unsigned char is_alive(unsigned char x, unsigned char y)
   if (packed_cell & _BV(7-(x%8)))
   {
     return 1;
-  } 
+  }
   else
   {
     return 0;
@@ -280,7 +280,7 @@ unsigned char update_cell(unsigned char cell_x, unsigned char cell_y)
     alive = -1;
   }
   return alive;
-}         
+}
 
 void make_glider(unsigned char x, unsigned char y)
 {

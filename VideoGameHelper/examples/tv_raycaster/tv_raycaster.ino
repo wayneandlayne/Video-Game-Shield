@@ -1,9 +1,9 @@
 /*
- _____        __     _______           _____ _______ ______ _____  
-|  __ \     /\\ \   / / ____|   /\    / ____|__   __|  ____|  __ \ 
+ _____        __     _______           _____ _______ ______ _____
+|  __ \     /\\ \   / / ____|   /\    / ____|__   __|  ____|  __ \
 | |__) |   /  \\ \_/ / |       /  \  | (___    | |  | |__  | |__) |
-|  _  /   / /\ \\   /| |      / /\ \  \___ \   | |  |  __| |  _  / 
-| | \ \  / ____ \| | | |____ / ____ \ ____) |  | |  | |____| | \ \ 
+|  _  /   / /\ \\   /| |      / /\ \  \___ \   | |  |  __| |  _  /
+| | \ \  / ____ \| | | |____ / ____ \ ____) |  | |  | |____| | \ \
 |_|  \_\/_/    \_\_|  \_____/_/    \_\_____/   |_|  |______|_|  \_\
 
 Copyright (c) 2010 Wayne and Layne, LLC
@@ -12,14 +12,14 @@ Code taken from the most excellent guide to raycasting technology, located on th
 http://lodev.org/cgtutor/raycasting.html
 
 Copyright (c) 2004-2007, Lode Vandevenne
- 
+
 All rights reserved.
- 
+
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
- 
+
 * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- 
+
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -31,7 +31,7 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- 
+
 */
 
 #include <TVout.h>
@@ -122,9 +122,9 @@ void loop()
   double posX = 10, posY = 10;        // x and y start position
   double dirX = -1, dirY = 0;         // initial direction vector
   double planeX = 0, planeY = 0.66;   // the 2d raycaster version of camera plane
-  
+
   // used in the drawing phase
-  byte midpoint = RENDERHEIGHT/2; 
+  byte midpoint = RENDERHEIGHT/2;
 
   while(1)
   {
@@ -133,14 +133,14 @@ void loop()
     for (byte x = 0; x < RENDERWIDTH; x++)
     {
       // -------------------- Render the next frame -------------------------------
-      
-      // calculate ray position and direction 
+
+      // calculate ray position and direction
       double cameraX = 2 * x / (double) RENDERWIDTH - 1; // x-coordinate in camera space
       double rayPosX = posX;
       double rayPosY = posY;
       double rayDirX = dirX + planeX * cameraX;
       double rayDirY = dirY + planeY * cameraX;
-      // which box of the map we're in  
+      // which box of the map we're in
       int mapX = (int) rayPosX;
       int mapY = (int) rayPosY;
 
@@ -179,7 +179,7 @@ void loop()
         stepY = 1;
         sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
       }
-      
+
       // perform DDA
       while (1)
       {
@@ -196,7 +196,7 @@ void loop()
           mapY += stepY;
           side = 1;
         }
-        
+
         // Check if ray has hit a wall
         if (checkWorldMap(mapX, mapY) > 0)
           break;
@@ -217,7 +217,7 @@ void loop()
       {
         lineHeight = RENDERHEIGHT;
       }
-      
+
       double wallX; // where exactly the wall was hit
       if (side == 1)
       {
@@ -235,18 +235,18 @@ void loop()
       {
         render[x] += RENDERHEIGHT;
       }
-      
+
     } // end of main render loop
-    
+
     char render_time_str[10];
     itoa((1000 * (display.frames - start)) / 60, render_time_str, 10);
-    
+
     // -------------------- Drawing to the screen -------------------------------
 
     start = display.frames;
 
     TV.clear_screen();
-    
+
     for (byte col = 0; col < RENDERWIDTH; col++)
     {
       if (render[col] > RENDERHEIGHT)
@@ -259,16 +259,16 @@ void loop()
         TV.set_pixel(col, midpoint - render[col], 1);
       }
     }
-    
+
     char draw_time_str[10];
     itoa((1000 * (display.frames - start)) / 60, draw_time_str, 10);
-    
+
     // -------------------- Dealing with user input -------------------------------
-    
+
     start = display.frames;
     nunchuck_strafe.update();
     nunchuck_turn.update();
-    
+
     double frameTime = .1; //TODO: actually measure frame length!
 
     //speed modifiers
@@ -276,7 +276,7 @@ void loop()
     double rotSpeed; // = frameTime * 1.0; //the constant value is in radians/second
 
     unsigned char temp;
-    
+
     // move forward if no wall in front of you
     temp = nunchuck_strafe.joy_y_scaled();
     if (temp >= 60)
@@ -293,7 +293,7 @@ void loop()
       if (!checkWorldMap(int(posX - dirX * moveSpeed), int(posY))) posX -= dirX * moveSpeed;
       if (!checkWorldMap(int(posX), int(posY - dirY * moveSpeed))) posY -= dirY * moveSpeed;
     }
-    
+
     // When rotating a vector to the right by 90 degrees:
     //    x' = y
     //    y' = -x
@@ -301,7 +301,7 @@ void loop()
     //    x' = -y
     //    y' = x
     // In the two strafe functions below, we've switched dirX and dirY according to the above rules:
-    
+
     temp = nunchuck_strafe.joy_x_scaled();
     // move right if no wall in the way
     if (temp >= 60)
@@ -310,7 +310,7 @@ void loop()
       if (!checkWorldMap(int(posX + dirY * moveSpeed), int(posY))) posX += dirY * moveSpeed;
       if (!checkWorldMap(int(posX), int(posY + -dirX * moveSpeed))) posY += -dirX * moveSpeed;
     }
-    
+
     // move left if no wall in the way
     if (temp <= 40)
     {
@@ -318,7 +318,7 @@ void loop()
       if (!checkWorldMap(int(posX + -dirY * moveSpeed), int(posY))) posX += -dirY * moveSpeed;
       if (!checkWorldMap(int(posX), int(posY + dirX * moveSpeed))) posY += dirX * moveSpeed;
     }
-    
+
     // rotate to the right
     temp = nunchuck_turn.joy_x_scaled();
     if (temp >= 60)
@@ -345,11 +345,11 @@ void loop()
       planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
       planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
     }
-    
+
 
     char other_time_str[10];
     itoa((1000 * (display.frames - start)) / 60, other_time_str, 10);
-    
+
     TV.print(96, 0, render_time_str);
     TV.print(96, 8, draw_time_str);
     TV.print(96, 16, other_time_str);

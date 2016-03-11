@@ -93,3 +93,4 @@ PROGMEM prog_uchar monster_bitmap[] = {
 0b00000000,
 
 };
+

@@ -6,4 +6,4 @@ void sound_play_song_once(char song);
 void sound_update();
 void sound_play_sfx(char song);
 
-#endif __SOUND__
+#endif // __SOUND__

@@ -74,14 +74,14 @@ enum { ROTATION_AUTOREPEAT_TIMER = 200 };
  */
 
 /* Error codes */
-enum { 
+enum {
     ERROR_NONE         =  0,   /* Everything is OK, oh wonders!     */
     ERROR_PLAYER_QUITS =  1,   /* The player quits, our fail        */
     ERROR_NO_MEMORY    = -1,   /* Not enough memory                 */
     ERROR_NO_VIDEO     = -2,   /* Video system was not initialized  */
     ERROR_NO_IMAGES    = -3,   /* Problem loading the image files   */
     ERROR_ASSERT       = -100  /* Something went very very wrong... */
-}; 
+};
 
 /* Game events */
 enum {
@@ -111,7 +111,7 @@ enum { TETROMINO_TYPES = 7 };
  * http://tetris.wikia.com/wiki/Tetromino
  * Initial cell disposition is commented below.
  */
-enum { 
+enum {
     /*
      *              ....
      *              ####
@@ -202,8 +202,8 @@ typedef struct StcGamePrivate StcGamePrivate;
 /*
  * Data structure that holds information about our game _object_.
  * With a little more of work we could create accessors for every
- * property this _object_ shares, thus avoiding the possibility 
- * of external code messing with our _object_ internal state, (as the 
+ * property this _object_ shares, thus avoiding the possibility
+ * of external code messing with our _object_ internal state, (as the
  * C++ version shows using inline accessors and constant references).
  * For simplicity (and speed), I'm leaving it like this.
  */

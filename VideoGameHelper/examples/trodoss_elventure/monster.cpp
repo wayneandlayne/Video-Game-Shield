@@ -25,16 +25,16 @@ RoomElement moveMonster(RoomElement element)
     //erase the old monster image (using blank map tile)
     TV.bitmap(element.x, element.y, map_bitmap);
     TV.bitmap(element.x, element.y + 8, map_bitmap);
-  
+
     element.step++;
     if (element.step > 2) element.step = 1;
-   
+
     switch (element.state)
     {
        case STATE_VISIBLE:
-	    element.state = changeMonsterDirection();
-		break;
-	 
+           element.state = changeMonsterDirection();
+           break;
+
        case STATE_MOVE_UP:
            element.state = STATE_VISIBLE;
            if (element.y > 4)
@@ -48,9 +48,9 @@ RoomElement moveMonster(RoomElement element)
                 }
              }
            }
-	   break;
-	   
-	  case STATE_MOVE_DOWN:
+           break;
+
+       case STATE_MOVE_DOWN:
            element.state = STATE_VISIBLE;
            if (element.y < 48)
            {
@@ -61,11 +61,11 @@ RoomElement moveMonster(RoomElement element)
                   element.y += STEP_LENGTH;
                   element.state = STATE_MOVE_DOWN;
                 }
-             } 
+             }
            }
-	   break;	   
+           break;
 
-	  case STATE_MOVE_LEFT:
+       case STATE_MOVE_LEFT:
            element.state = STATE_VISIBLE;
            if (element.x > 4)
            {
@@ -78,9 +78,9 @@ RoomElement moveMonster(RoomElement element)
                 }
              }
            }
-	   break;	   
-	   
-	  case STATE_MOVE_RIGHT:
+           break;
+
+       case STATE_MOVE_RIGHT:
            element.state = STATE_VISIBLE;
            if (element.x < 80)
            {
@@ -93,14 +93,14 @@ RoomElement moveMonster(RoomElement element)
                 }
              }
            }
-	   break;		      
+           break;
     }
 
     overlaybitmap(element.x, element.y, monster_bitmap + ( element.type * SIZEOF_MONSTER_RECORD));
-    overlaybitmap(element.x, element.y+8, monster_bitmap + ((element.type + element.step) * SIZEOF_MONSTER_RECORD)); 
-	
-	//decrement counter, if active
-	if (element.counter > 0) element.counter--;
+    overlaybitmap(element.x, element.y+8, monster_bitmap + ((element.type + element.step) * SIZEOF_MONSTER_RECORD));
+
+    //decrement counter, if active
+    if (element.counter > 0) element.counter--;
   }
   return element;
 }
@@ -110,14 +110,12 @@ RoomElement hitMonster(RoomElement element)
   //erase the old monster image (using blank map tile)
   TV.bitmap(element.x, element.y, map_bitmap);
   TV.bitmap(element.x, element.y + 8, map_bitmap);
-  
+
   element.state = STATE_HIDDEN;
-  
+
   //add heart element
   addRoomElement(ITEM_HEART, element.x, element.y, STATE_VISIBLE, COUNTER_START);
-  
+
   return element;
 }
-
-
 

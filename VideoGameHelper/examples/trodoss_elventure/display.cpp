@@ -22,42 +22,42 @@ void updateDisplay(Elf elf)
     } else {
       //draw blanks
       TV.bitmap(x_offset, 4, display_bitmap);
-    }	
+    }
     x_offset += 5;
   }
-   
+
   //draw crystals (inventory)
   x_offset = 98;
   for (char j=0; j < MAX_ITEMS; j++)
   {
     switch (elf.items[j])
     {
-	  case ITEM_CRYSTAL:
-        //draw crystals
-        TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 2 ));
-		break;
-		
-	  case ITEM_ARMOR:
-        //draw crystals
-        TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 3 ));
-		break;
+        case ITEM_CRYSTAL:
+            //draw crystals
+            TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 2 ));
+            break;
 
-	  case ITEM_ORB:
-        //draw crystals
-        TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 4 ));
-		break;
+        case ITEM_ARMOR:
+            //draw crystals
+            TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 3 ));
+            break;
 
-	  case ITEM_STAFF:
-        //draw crystals
-        TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 5 ));
-		break;
-		
-      default:
-        //draw blanks
-        TV.bitmap(x_offset, 12, display_bitmap);
-        break;
-    }	
+        case ITEM_ORB:
+            //draw crystals
+            TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 4 ));
+            break;
+
+        case ITEM_STAFF:
+            //draw crystals
+            TV.bitmap(x_offset, 12, display_bitmap + (SIZEOF_DISPLAY_RECORD * 5 ));
+            break;
+
+        default:
+            //draw blanks
+            TV.bitmap(x_offset, 12, display_bitmap);
+            break;
+    }
     x_offset += 5;
-  }   
+  }
 }
 

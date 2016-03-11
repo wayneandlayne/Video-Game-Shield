@@ -1,5 +1,5 @@
-/* 
-   
+/*
+
    John Conway's Game of Life
    Written by Adam Wolf and Matthew Beckler for Wayne and Layne, LLC
    http://www.wayneandlayne.com/projects/video-game-shield/
@@ -11,7 +11,7 @@ This is intended for the Video Game Shield, and uses the TVOut library and the s
   *Around 3 FPS at resolution 104x64
   *A nunchuck can be used to pause or access a menu with settings.
   *Help screen explaining what Conway's Game of Life is
-  
+
 Features:
   *Works with 1 or 0 nunchucks
   *Outputs to a TV over an RCA connection
@@ -21,12 +21,12 @@ Features:
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation; either version 2 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License along
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -59,7 +59,7 @@ void setup()
   TV.clear_screen();
   TV.select_font(font6x8);
   TV.printPGM(0,  0, PSTR("Conway's")); //PSTR is a macro that puts a string in PROGMEM.  It's a really useful shortcut if you're only going to use that string once in a sketch.
-  TV.printPGM(0, 10, PSTR("Game of Life")); 
+  TV.printPGM(0, 10, PSTR("Game of Life"));
   TV.printPGM(0, 32, PSTR("by"));
   TV.printPGM(0, 41, PSTR("Wayne and Layne"));
   int random_seed = analogRead(0);
@@ -75,9 +75,9 @@ void loop()
   //randomize_field();           //uncomment this, and comment the other two lines here to get the field to begin randomly
   load_pattern_into_buffer(patterns[1]);   //uncomment this, and comment the other two lines here to start with a pattern
   //make_glider(32,32);          //uncomment this, and comment the other two lines here to start with a simple glider
-  
+
   copy_from_buffer_to_screen();
-  
+
   while (1)
   {
     update_field();
@@ -85,7 +85,7 @@ void loop()
     {
       TV.tone(500, 20);
     }
-    
+
     //react to nunchuck
     if (nunchuck_plugged_in)
     {
@@ -153,7 +153,7 @@ void loop()
         }
         //exit menu
         TV.clear_screen();
-        copy_from_buffer_to_screen(); 
+        copy_from_buffer_to_screen();
       }
     }
   }
@@ -165,23 +165,23 @@ void setup_nunchuck(Nunchuck* nunchuck)
   {
     //nunchuck detected
     nunchuck_plugged_in = 1;
-  } 
+  }
   else
   {
     nunchuck_plugged_in = 0;
   }
 }
 
-void pause_noise() 
+void pause_noise()
 {
   #define NOTE_C7  2093
   #define NOTE_E7  2637
-  
-  
+
+
   int melody[] = {NOTE_E7, NOTE_C7, NOTE_E7, NOTE_C7};
 //The rest of the notes can be found in pitches.h on the Arduino website
   byte noteDurations[] = {12, 12, 12, 3};
-  for (byte thisNote = 0; thisNote < 4; thisNote++) 
+  for (byte thisNote = 0; thisNote < 4; thisNote++)
   {
     int noteDuration = 800/noteDurations[thisNote];
     TV.tone(melody[thisNote], noteDuration);
@@ -212,7 +212,7 @@ char loadPatternsMenu()
   byte choice = 0;
   //TV.draw_box(1, 7*choice+9, 5, 5, 1, 1, 0, 0); // draw selection box
   TV.draw_rect(1, 7*choice+9, 5, 5, 1, 1); // draw selection box
-  
+
   while (1)
   {
     TV.delay_frame(10);
@@ -222,7 +222,7 @@ char loadPatternsMenu()
     {
       //TV.draw_box(1, 7*choice+9, 5, 5, 0, 0, 0, 0); // remove selection box
       TV.draw_rect(1, 7*choice+9, 5, 5, 0, 0); // remove selection box
-      
+
       if (choice == 0)
         choice = NUM_OF_PATTERNS ; //not num of patterns -1 cuz we added BACK
       else
@@ -245,13 +245,13 @@ char loadPatternsMenu()
       break;
     }
   }
-  
+
   //TV.select_font(_5x7);
   TV.select_font(font6x8);
   if (choice > 0) //i.e. not back
   {
     load_pattern_into_buffer(patterns[choice-1]);
-  }  
+  }
   return choice;
 }
 

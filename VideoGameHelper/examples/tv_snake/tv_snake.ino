@@ -1,9 +1,9 @@
 /*
-     ,---.   ,--.  ,--.   ,---.   ,--. ,--. ,------.  ,---.  
-    '   .-'  |  ,'.|  |  /  O  \  |  .'   / |  .---' '   .-' 
-    `.  `-.  |  |' '  | |  .-.  | |  .   '  |  `--,  `.  `-. 
+     ,---.   ,--.  ,--.   ,---.   ,--. ,--. ,------.  ,---.
+    '   .-'  |  ,'.|  |  /  O  \  |  .'   / |  .---' '   .-'
+    `.  `-.  |  |' '  | |  .-.  | |  .   '  |  `--,  `.  `-.
     .-'    | |  | `   | |  | |  | |  |\   \ |  `---. .-'    |
-    `-----'  `--'  `--' `--' `--' `--' '--' `------' `-----' 
+    `-----'  `--'  `--' `--' `--' `--' '--' `------' `-----'
 
     A two-player game for the Wayne and Layne Video Game Shield.
 
@@ -60,7 +60,7 @@ void setup()
 {
   TV.begin(_NTSC, 128, 96);
   TV.select_font(font4x6);
- 
+
   title_screen_init_nunchucks(&TV, "Snakes on surfaces", &player1, &player2, true);
 
   rules_screen();
@@ -69,16 +69,16 @@ void setup()
 void rules_screen()
 {
   TV.clear_screen();
-  
+
   TV.printPGM(0, 0, PSTR("Available Maps:"));
   TV.draw_line(0, 10, TV.hres()-1, 10, 1);
-  
+
   TV.draw_line(0, 15, 16, 15, 1); // top
   TV.draw_line(0, 25, 16, 25, 1); // bottom
   TV.draw_line(0, 15, 0, 25, 1); // left
   TV.draw_line(16, 15, 16, 25, 1); // right
   TV.printPGM(26, 18, PSTR("Plane"));
-  
+
   TV.draw_line(0, 35, 16, 35, 1); // top
   TV.draw_line(0, 45, 16, 45, 1); // bottom
   TV.draw_line(0, 40, 5, 40, 1); // left arrow mid
@@ -88,7 +88,7 @@ void rules_screen()
   TV.draw_line(16, 40, 14, 38, 1); // right arrow upper diag
   TV.draw_line(16, 40, 14, 42, 1); // right arrow lower diag
   TV.printPGM(26, 38, PSTR("Sphere"));
-  
+
   TV.draw_line(8, 54, 8, 58, 1); // up arrow mid
   TV.draw_line(8, 54, 10, 56, 1); // up arrow right diag
   TV.draw_line(8, 54, 6, 56, 1); // up arrow left diag
@@ -102,10 +102,10 @@ void rules_screen()
   TV.draw_line(16, 60, 14, 58, 1); // right arrow upper diag
   TV.draw_line(16, 60, 14, 62, 1); // right arrow lower diag
   TV.printPGM(26, 58, PSTR("Torus"));
-  
+
   TV.draw_line(0, 75, TV.hres()-1, 75, 1);
   TV.printPGM(0, 80, PSTR("P1 press C"));
-  
+
   TV.delay_frame(30);
   while(1)
   {
@@ -119,14 +119,14 @@ void rules_screen()
 void ready_screen()
 {
   draw_score_bar();
- 
+
   unsigned char p1x, p2x, p1y, p2y;
   p1x = TV.hres()/3;
   p1y = TV.vres()/2+5;
-  
+
   p2x = (TV.hres()/3)*2;
   p2y = TV.vres()/2+5;
-  
+
   TV.printPGM(0, 0, PSTR("Press C when ready"));
   TV.printPGM(24, 32, PSTR("P1 ready?"));
   TV.printPGM(72, 32, PSTR("P2 ready?"));
@@ -149,7 +149,7 @@ void ready_screen()
       TV.print(80, 40, "ok");
     }
   }
-  
+
   TV.print(TV.hres()/2-8, 50, "3...");
   TV.delay_frame(60);
   TV.print(TV.hres()/2-8, 60, "2...");
@@ -170,7 +170,7 @@ char move_snakes()
     if (snakes[i].x < EDGE)
     {
       snakes[i].x = TV.hres()-2*EDGE;
-    } 
+    }
     else if (snakes[i].x > TV.hres()-EDGE)
     {
       snakes[i].x = EDGE;
@@ -179,7 +179,7 @@ char move_snakes()
     if (snakes[i].y < EDGE)
     {
       snakes[i].y = TV.vres()-EDGE-BAR_HEIGHT-5;
-    } 
+    }
     else if (snakes[i].y > TV.vres()-5-EDGE-BAR_HEIGHT)
     {
       snakes[i].y = EDGE;
@@ -188,15 +188,15 @@ char move_snakes()
     if (TV.get_pixel(snakes[i].x, snakes[i].y) == 1)
     {
       return i+1; //it returns back 1 or 2, which indicates who lost.
-    } 
+    }
     else
     {
       TV.set_pixel(snakes[i].x, snakes[i].y, 1);
     }
   }
-  
+
   return 0;
-  //TODO: handle simultaneous losing 
+  //TODO: handle simultaneous losing
 }
 
 
@@ -213,7 +213,7 @@ void loop()
   game_mode = 0;
   int throttle = 2;
 
-  while (scores[0] < 10 && scores[1] < 10)  
+  while (scores[0] < 10 && scores[1] < 10)
   {
     TV.clear_screen();
     ready_screen();
@@ -221,9 +221,9 @@ void loop()
     byte game_over = 0;
     long next_frame;
 
-    while (!game_over) 
+    while (!game_over)
     {
-      next_frame = display.frames+throttle; 
+      next_frame = display.frames+throttle;
       round_num++;
 
       player1.update();
@@ -239,11 +239,11 @@ void loop()
         TV.tone(1000,50);
         scores[game_over-1] += 1;
       }
-      
+
       while (display.frames < next_frame) {};
     }
   }
-  
+
   // winner winner chicken dinner
   TV.clear_screen();
   if (scores[0] == 10)
@@ -261,17 +261,17 @@ void handle_snake(Snake* snake)
   {
     snake->dir_x = 1;
     snake->dir_y = 0;
-  } 
+  }
   else if (n->joy_left() && ( snake->dir_x != 1 && snake->dir_y != 0))
   {
     snake->dir_x = -1;
     snake->dir_y = 0;
-  } 
-  else if (n->joy_up() && ( snake->dir_x != 0 && snake->dir_y != 1)) 
+  }
+  else if (n->joy_up() && ( snake->dir_x != 0 && snake->dir_y != 1))
   {
     snake->dir_x = 0;
     snake->dir_y = -1;
-  } 
+  }
   else if (n->joy_down() && ( snake->dir_x != 0 && snake->dir_y != -1))
   {
     snake->dir_x = 0;
@@ -309,21 +309,21 @@ void initialize_game()
 void draw_score_bar()
 {
   TV.draw_line(3, TV.vres()-EDGE-1-BAR_HEIGHT, TV.hres()-EDGE-1, TV.vres()-EDGE-1-BAR_HEIGHT, 1); //separator
-  
+
   TV.print_char(8, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, '0' + scores[0]);//TODO: fix x value
   TV.print_char(TV.hres()-8, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, '0' + scores[1]);//TODO: fix x value
-  
+
   if (game_mode == SNAKES_ON_A_PLANE)
   {
     TV.printPGM(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, PSTR("Snakes on a Plane")); //TODO: make this actually centered
-  } 
+  }
   else if (game_mode == SNAKES_ON_A_SPHERE)
   {
     TV.print(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, "Snakes on a Sphere"); //TODO: make this actually centered
-  }  
+  }
   else if (game_mode == SNAKES_ON_A_TORUS)
   {
-    TV.print(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, "Snakes on a Torus"); //TODO: make this actually centered    
+    TV.print(32, TV.vres()-1-EDGE-CHAR_BAR_HEIGHT, "Snakes on a Torus"); //TODO: make this actually centered
   }
 }
 

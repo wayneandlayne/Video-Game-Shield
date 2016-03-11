@@ -5,4 +5,4 @@
 RoomElement snake_move(RoomElement element);
 RoomElement snake_hit(RoomElement element);
 
-#endif __SNAKE__
+#endif // __SNAKE__

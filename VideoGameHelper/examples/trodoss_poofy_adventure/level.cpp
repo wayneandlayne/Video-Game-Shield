@@ -35,7 +35,7 @@ void level_advance()
   if (level_current_room <= 23)
   {
      level_state = LEVEL_SCROLLING;
-     level_scroll_x = 0; 
+     level_scroll_x = 0;
   } else {
      //if we can't advance anymore we have made it to the end (Yay!)
      poofy_win();
@@ -49,7 +49,7 @@ void level_draw()
    level_scroll_x = 0;
    TV.clear_screen();
    level_state = LEVEL_PLAYING;
-      
+
    //read the level data and draw the level on the screen
    for (char y=0; y < 10; y++)
    {
@@ -59,9 +59,9 @@ void level_draw()
           if (current_block > 0) TV.bitmap(x * 8, y * 8, level_bitmap + ((current_block-1) * SIZEOF_BACKDROP_RECORD));
       }
    }
-   
+
    //load the room elements
-   room_load_elements(level_current_room);   
+   room_load_elements(level_current_room);
 }
 
 //handles scrolling the screen left
@@ -71,19 +71,19 @@ void level_scroll()
   {
      //shift the display left by 8 pixels
      shift_left(8);
-  
+
      //read the level data and draw the level on the screen
      for (char y=0; y < 10; y++)
      {
          char current_block = level_get_block(level_scroll_x, y, -1);
          if (current_block > 0) TV.bitmap(120, y * 8, level_bitmap + ((current_block-1) * SIZEOF_BACKDROP_RECORD));
-   
-     }  
-     level_scroll_x++; 
+
+     }
+     level_scroll_x++;
   } else {
      //we are done scrolling, so return to playing
      level_state = LEVEL_PLAYING;
-     
+
      //load the room elements
      room_load_elements(level_current_room);
   }
@@ -91,40 +91,40 @@ void level_scroll()
 
 char level_check_move_h(char x, char y, char &tile_y)
 {
-   char tile_x_pixels = (x - (x % 8)); 	//calculate the x position in pixels we are checking against
+   char tile_x_pixels = (x - (x % 8)); //calculate the x position in pixels we are checking against
    char testend = x + 8; //calculate the end of testing
-   tile_y = y >> 3; //calculate the y position (map coordinates) of the tiles we want to test   
+   tile_y = y >> 3; //calculate the y position (map coordinates) of the tiles we want to test
    char tile_x = tile_x_pixels >> 3; //calculate map x coordinate for first tile
- 
+
     //loop while the start point of the test tile is inside the bounding box
     while(tile_x_pixels <= testend){
-       if(level_get_block(tile_x, tile_y, -1) > 0)	//is a solid tile is found at tile_x, tile_y?
-			return 1;	
-			
-       tile_x++;		//increase tile x map coordinate
-       tile_x_pixels +=8;	//increase tile x pixel coordinate
-	}
+       if(level_get_block(tile_x, tile_y, -1) > 0) //is a solid tile is found at tile_x, tile_y?
+           return 1;
 
-	return 0;
+       tile_x++;            //increase tile x map coordinate
+       tile_x_pixels +=8;   //increase tile x pixel coordinate
+    }
+
+    return 0;
 }
 
 char level_check_move_v(char x, char y, char &tile_x)
 {
-   char tile_y_pixels = (y - (y % 8)); 	//calculate the x position in pixels we are checking against
+   char tile_y_pixels = (y - (y % 8)); //calculate the x position in pixels we are checking against
    char testend = y + 8; //calculate the end of testing
-   tile_x = x >> 3; //calculate the y position (map coordinates) of the tiles we want to test   
+   tile_x = x >> 3; //calculate the y position (map coordinates) of the tiles we want to test
    char tile_y = tile_y_pixels >> 3; //calculate map x coordinate for first tile
- 
+
     //loop while the start point of the test tile is inside the bounding box
     while(tile_y_pixels <= testend){
-       if(level_get_block(tile_x, tile_y, -1) > 0)	//is a solid tile is found at tile_x, tile_y?
-			return 1;	
-			
-       tile_y++;		//increase tile x map coordinate
-       tile_y_pixels +=8;	//increase tile x pixel coordinate
-	}
+       if(level_get_block(tile_x, tile_y, -1) > 0) //is a solid tile is found at tile_x, tile_y?
+           return 1;
 
-	return 0;
+       tile_y++;            //increase tile x map coordinate
+       tile_y_pixels +=8;   //increase tile x pixel coordinate
+    }
+
+    return 0;
 }
 
 //return the block at a given 'level' x,y coordinate in the current room
@@ -133,14 +133,15 @@ char level_get_block(char level_x, char level_y, char room)
   char index_ptr = 0;
   //if no room parameter is passed, assume the current
   //room
-  if (room == -1) room = level_current_room; 
+  if (room == -1) room = level_current_room;
   if (level_x > 15) level_x = 15;
   if (level_y > 9) level_y = 9;
-  
-  //determine the index start for room data 
+
+  //determine the index start for room data
   index_ptr = pgm_read_byte_near(map_room_data + (room * 16) + level_x);
-  
+
   //determine which pattern is being referenced
   //and return this value
   return pgm_read_byte_near (map_pattern_data + (index_ptr * 10) + level_y);
 }
+

@@ -123,3 +123,4 @@ PROGMEM prog_uchar logo_bitmap[] = {
 0b00010100,
 
 };
+

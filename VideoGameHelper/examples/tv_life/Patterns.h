@@ -13,70 +13,70 @@ typedef struct pattern {
 
 #define NUM_OF_PATTERNS 7
 //gggwfishhook.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                    XX                                  
-//                                                                    X X                                 
-//                                                                      X                                 
-//                                                          X           XX                                
-//                                                        X X                                             
-//                                              XX      XX            XX                                  
-//                                             X   X    XX            XX                                  
-//                                  XX        X     X   XX                                                
-//                                  XX        X   X XX    X X                                             
-//                                            X     X       X                                             
-//                                             X   X                                                      
-//                                              XX                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                                                    XX
+//                                                                    X X
+//                                                                      X
+//                                                          X           XX
+//                                                        X X
+//                                              XX      XX            XX
+//                                             X   X    XX            XX
+//                                  XX        X     X   XX
+//                                  XX        X   X XX    X X
+//                                            X     X       X
+//                                             X   X
+//                                              XX
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Pattern gggwfishhook_lif PROGMEM = {
 "gggwfishhook.lif",
@@ -149,70 +149,70 @@ const Pattern gggwfishhook_lif PROGMEM = {
 
 
 //gosperglidergun_106.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                          X                                             
-//                                                        X X                                             
-//                                              XX      XX            XX                                  
-//                                             X   X    XX            XX                                  
-//                                  XX        X     X   XX                                                
-//                                  XX        X   X XX    X X                                             
-//                                            X     X       X                                             
-//                                             X   X                                                      
-//                                              XX                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                                          X
+//                                                        X X
+//                                              XX      XX            XX
+//                                             X   X    XX            XX
+//                                  XX        X     X   XX
+//                                  XX        X   X XX    X X
+//                                            X     X       X
+//                                             X   X
+//                                              XX
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Pattern gosperglidergun_106_lif PROGMEM = {
 "gosperglidergun_106.lif",
@@ -282,70 +282,70 @@ const Pattern gosperglidergun_106_lif PROGMEM = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 };
 //oddtesttubebaby_106.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                       X                                                
-//                                                XX    X X                                               
-//                                                X X  X X                                                
-//                                                  X  X                                                  
-//                                                  X  X                                                  
-//                                                   XX                                                   
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                                       X
+//                                                XX    X X
+//                                                X X  X X
+//                                                  X  X
+//                                                  X  X
+//                                                   XX
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Pattern oddtesttubebaby_106_lif PROGMEM = {
 "oddtesttubebaby_106.lif",
@@ -415,70 +415,70 @@ const Pattern oddtesttubebaby_106_lif PROGMEM = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 };
 //piorbital_106.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                     XX          XX                                                     
-//                                    X  X        X  X                                                    
-//                                    XXX  XXXXXX  XXX                                                    
-//                                       XX      XX                                                       
-//                                      X          X                                                      
-//                                      XX X    X XX                                                      
-//                                           XX                                                           
-//                                   X                         XX          X                              
-//                              XXXX   X    X      X           XX          X                              
-//                                 X   X  XXXXX  X   XXXX                  X                              
-//                                     X  XXXXX  X   X                    XX                              
-//                                  X      XXX   X                      X                                 
-//                                   XX     X       X                  X    X                             
-//                                                XX                   X         XX                       
-//                                                                       XXX     X X                      
-//                                                                            XX X X                      
-//                                                                            X X X                       
-//                                                                              X                         
-//                                                          XX           X     X  X                       
-//                              XX                          X X          XX    X                          
-//                              XX                            XX         X     X   X                      
-//                                                          X X                X   X                      
-//                                           XX             XX                 X                          
-//                                              X X                            X  X                       
-//                                                X                     XXX     X                         
-//                                              X                     X       X X X                       
-//                                          X                         X    X  XX X X                      
-//                                X          XX                        X         X X                      
-//                                X                                      XX      XX                       
-//                                X                                       X                               
-//                        XX      XX                                      X                               
-//                       X X         X                                    X                               
-//                       X X XX  X    X                                                                   
-//                        X X X       X                                                                   
-//                          X     XXX                                                                     
-//                        X  X                                                                            
-//                           X                                                                            
-//                       X   X                                                                            
-//                       X   X     X                                       XX                             
-//                           X    XX                                       XX                             
-//                        X  X     X                                                                      
-//                          X                                                                             
-//                        X X X                                                                           
-//                       X X XX                                                                           
-//                       X X     XXX                                                                      
-//                        XX         X                   XX                                               
-//                              X    X                  X       X     XX                                  
-//                                  X                      X   XXX      X                                 
-//                               XX                    X   X  XXXXX  X                                    
-//                               X                  XXXX   X  XXXXX  X   X                                
-//                               X          XX           X      X    X   XXXX                             
-//                               X          XX                         X                                  
-//                                                            XX                                          
-//                                                       XX X    X XX                                     
-//                                                       X          X                                     
-//                                                        XX      XX                                      
-//                                                     XXX  XXXXXX  XXX                                   
-//                                                     X  X        X  X                                   
-//                                                      XX          XX                                    
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//                                     XX          XX
+//                                    X  X        X  X
+//                                    XXX  XXXXXX  XXX
+//                                       XX      XX
+//                                      X          X
+//                                      XX X    X XX
+//                                           XX
+//                                   X                         XX          X
+//                              XXXX   X    X      X           XX          X
+//                                 X   X  XXXXX  X   XXXX                  X
+//                                     X  XXXXX  X   X                    XX
+//                                  X      XXX   X                      X
+//                                   XX     X       X                  X    X
+//                                                XX                   X         XX
+//                                                                       XXX     X X
+//                                                                            XX X X
+//                                                                            X X X
+//                                                                              X
+//                                                          XX           X     X  X
+//                              XX                          X X          XX    X
+//                              XX                            XX         X     X   X
+//                                                          X X                X   X
+//                                           XX             XX                 X
+//                                              X X                            X  X
+//                                                X                     XXX     X
+//                                              X                     X       X X X
+//                                          X                         X    X  XX X X
+//                                X          XX                        X         X X
+//                                X                                      XX      XX
+//                                X                                       X
+//                        XX      XX                                      X
+//                       X X         X                                    X
+//                       X X XX  X    X
+//                        X X X       X
+//                          X     XXX
+//                        X  X
+//                           X
+//                       X   X
+//                       X   X     X                                       XX
+//                           X    XX                                       XX
+//                        X  X     X
+//                          X
+//                        X X X
+//                       X X XX
+//                       X X     XXX
+//                        XX         X                   XX
+//                              X    X                  X       X     XX
+//                                  X                      X   XXX      X
+//                               XX                    X   X  XXXXX  X
+//                               X                  XXXX   X  XXXXX  X   X
+//                               X          XX           X      X    X   XXXX
+//                               X          XX                         X
+//                                                            XX
+//                                                       XX X    X XX
+//                                                       X          X
+//                                                        XX      XX
+//                                                     XXX  XXXXXX  XXX
+//                                                     X  X        X  X
+//                                                      XX          XX
+//
+//
 
 const Pattern piorbital_106_lif PROGMEM = {
 "piorbital_106.lif",
@@ -548,70 +548,70 @@ const Pattern piorbital_106_lif PROGMEM = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 };
 //blocker_106.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                     X X                                                
-//                                                    X                                                   
-//                                               XX  X    X                                               
-//                                               XX X  X XX                                               
-//                                                   XX                                                   
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                                     X X
+//                                                    X
+//                                               XX  X    X
+//                                               XX X  X XX
+//                                                   XX
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Pattern blocker_106_lif PROGMEM = {
 "blocker_106.lif",
@@ -681,70 +681,70 @@ const Pattern blocker_106_lif PROGMEM = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 };
 //enretard_106.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                    X                                                   
-//                                                   X X                                                  
-//                                               XX X X X XX                                              
-//                                                X X   X X                                               
-//                                               X  X X X  X                                              
-//                                                XX     XX                                               
-//                                                  XX XX                                                 
-//                                                  X X X                                                 
-//                                                   X X                                                  
-//                                                 X X X X                                                
-//                                                 XX   XX                                                
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                                    X
+//                                                   X X
+//                                               XX X X X XX
+//                                                X X   X X
+//                                               X  X X X  X
+//                                                XX     XX
+//                                                  XX XX
+//                                                  X X X
+//                                                   X X
+//                                                 X X X X
+//                                                 XX   XX
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Pattern enretard_106_lif PROGMEM = {
 "enretard_106.lif",
@@ -814,70 +814,70 @@ const Pattern enretard_106_lif PROGMEM = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 };
 //revolver_106.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                             X            X                                             
-//                                             XXX    X   XXX                                             
-//                                                X X X  X                                                
-//                                               X      X X                                               
-//                                               X X      X                                               
-//                                                X  X X X                                                
-//                                             XXX   X    XXX                                             
-//                                             X            X                                             
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                             X            X
+//                                             XXX    X   XXX
+//                                                X X X  X
+//                                               X      X X
+//                                               X X      X
+//                                                X  X X X
+//                                             XXX   X    XXX
+//                                             X            X
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Pattern revolver_106_lif PROGMEM = {
 "revolver_106.lif",
@@ -947,70 +947,70 @@ const Pattern revolver_106_lif PROGMEM = {
 {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 };
 //blinkership1_106.lif
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                 XXXX                                                   
-//                                                 X   X                                                  
-//                                                 X                                                      
-//                                        XX        X  X                                                  
-//                                       XX XX                                                            
-//                                        XXXX   X                                                        
-//                                         XX   X XX        X    XXX                                      
-//                                             X   X        X    X X                                      
-//                                         XX   X XX        X    XXX                                      
-//                                        XXXX   X                                                        
-//                                       XX XX                                                            
-//                                        XX        X  X                                                  
-//                                                 X                                                      
-//                                                 X   X                                                  
-//                                                 XXXX                                                   
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
-//                                                                                                        
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                                                 XXXX
+//                                                 X   X
+//                                                 X
+//                                        XX        X  X
+//                                       XX XX
+//                                        XXXX   X
+//                                         XX   X XX        X    XXX
+//                                             X   X        X    X X
+//                                         XX   X XX        X    XXX
+//                                        XXXX   X
+//                                       XX XX
+//                                        XX        X  X
+//                                                 X
+//                                                 X   X
+//                                                 XXXX
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const Pattern blinkership1_106_lif PROGMEM = {
 "blinkership1_106.lif",

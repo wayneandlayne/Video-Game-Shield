@@ -103,3 +103,4 @@ PROGMEM prog_uchar poofy_bitmap[] = {
 0b10010010,
 
 };
+
