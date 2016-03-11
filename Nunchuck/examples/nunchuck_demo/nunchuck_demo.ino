@@ -31,47 +31,47 @@
 
 Nunchuck nunchuck;
 
-void setup() 
+void setup()
 {
   nunchuck.begin(NUNCHUCK_PLAYER_1);
   Serial.begin(9600);
 }
 
-void loop() 
+void loop()
 {
   nunchuck.update();
   Serial.println("Nunchuck values:");
-  Serial.println("Joystick:");  
+  Serial.println("Joystick:");
   Serial.print("x: "); Serial.println(nunchuck.joy_x(), DEC);
   Serial.print("y: "); Serial.println(nunchuck.joy_y(), DEC);
-  
+
   Serial.println("Accelerometer:");
   Serial.print("x: "); Serial.println(nunchuck.acc_x(), DEC);
   Serial.print("y: "); Serial.println(nunchuck.acc_y(), DEC);
   Serial.print("z: "); Serial.println(nunchuck.acc_z(), DEC);
 
   Serial.println("Buttons:");
-  
+
   Serial.print("c: ");
   if (nunchuck.button_c())
   {
-    Serial.println("pushed"); 
+    Serial.println("pushed");
   }
   else
   {
-    Serial.println("not pushed"); 
+    Serial.println("not pushed");
   }
-  
+
   Serial.print("z: ");
   if (nunchuck.button_z())
   {
-    Serial.println("pushed"); 
+    Serial.println("pushed");
   }
   else
   {
-    Serial.println("not pushed"); 
+    Serial.println("not pushed");
   }
-  
+
   delay(1000);
 }
 
