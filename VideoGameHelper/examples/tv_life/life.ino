@@ -27,7 +27,7 @@ unsigned char neighbors(unsigned char x, unsigned char y)
   return neighbor_count;
 }
 
-void inline copy_from_screen_to_buffer()
+void copy_from_screen_to_buffer()
 {
   for (unsigned char x = 0; x < ARRAY_XCOLS; x++) {
     for (unsigned char y = 0; y < YCOLS; y++) {
@@ -37,7 +37,7 @@ void inline copy_from_screen_to_buffer()
   }
 }
 
-void inline copy_from_buffer_to_screen()
+void copy_from_buffer_to_screen()
 {
   for (unsigned char x = 0; x < ARRAY_XCOLS; x++) {
     for (unsigned char y = 0; y < YCOLS; y++) {
