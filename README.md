@@ -11,7 +11,7 @@ Some of the libraries are MIT licensed, while some are GPL licensed.
 
 Installing
 ==========
-To install, extract the folders in this zip archive into your sketchbook, in a "libraries" subdirectory. On Windows, your sketchbook is probably in your My Documents, named "Arduino". On Linux, your sketchbook is probably ~/sketchbook/.
+To install, extract the folders in this zip archive into your sketchbook, in a "libraries" subdirectory. On Windows, your sketchbook is probably in your My Documents, named "Arduino". On Linux, your sketchbook is probably ~/sketchbook/ or ~/Arduino/.
 
 If you're using a Mac, OSX probably unzipped the zip file with its own top-level directory. This is incorrect behavior, since our zip file doesn't have a top-level directory inside. To work around this issue, you should copy all the files and folders from this errant top-level folder into your sketchbook's libraries folder.
 
